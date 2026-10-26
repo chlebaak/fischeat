@@ -379,7 +379,7 @@ export const sampleTest1: TestVersion = {
           fields: [
             { id: "cdp", label: "ČDP", answer: 3830, tolerance: 0.001, placeholder: "3830" },
           ],
-          solution: ["$CDP = HDP - odpisy = 3950 - 120 = 3830$."],
+          solution: ["$\text{ČDP} = \text{HDP} - \text{odpisy} = 3950 - 120 = 3830$."],
         },
         {
           id: "q5c",

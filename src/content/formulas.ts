@@ -50,9 +50,9 @@ export const formulas: Formula[] = [
     id: "hnd",
     topicId: "narodni-ucty",
     name: "Hrubý národní důchod",
-    latex: "HND = HDP + Z",
+    latex: "\text{HND} = \text{HDP} + Z",
     variables: [
-      { symbol: "HND", meaning: "hrubý národní důchod" },
+      { symbol: "\text{HND}", meaning: "hrubý národní důchod" },
       { symbol: "Z", meaning: "saldo prvotních důchodů rezidentů v zahraničí a nerezidentů doma" },
     ],
     when: "Použij, když chceš přejít od produktu vytvořeného na území k důchodům rezidentů.",
@@ -61,9 +61,9 @@ export const formulas: Formula[] = [
     id: "cdp",
     topicId: "narodni-ucty",
     name: "Čistý domácí produkt",
-    latex: "CDP = HDP - A",
+    latex: "\text{ČDP} = \text{HDP} - A",
     variables: [
-      { symbol: "CDP", meaning: "čistý domácí produkt" },
+      { symbol: "\text{ČDP}", meaning: "čistý domácí produkt" },
       { symbol: "A", meaning: "odpisy, tedy znehodnocení kapitálu" },
     ],
     when: "Použij vždy, když se ptají na čistou variantu produktu. Čistá veličina = hrubá minus odpisy.",

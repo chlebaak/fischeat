@@ -253,7 +253,7 @@ export const narodniUcty: Topic = {
             },
             {
               label: "ČDP",
-              text: "$CDP = 3950 - 120 = 3830$.",
+              text: "$\text{ČDP} = 3950 - 120 = 3830$.",
             },
             {
               label: "Vládní nákupy",
