@@ -1,0 +1,398 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@theme {
+  --color-paper: #fcfcfa;
+  --color-ink: #121417;
+  --color-muted: #6e7378;
+  --color-line: #e5e6e2;
+  --color-accent: #24527a;
+  --color-accent-soft: #edf2f6;
+  --color-danger: #a33b2b;
+  --color-graph-2: #3f6b57;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-sans);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 3px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: #dce8f0;
+  }
+
+  input,
+  button,
+  select {
+    font: inherit;
+  }
+}
+
+.container-page {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+.container-prose {
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.prose-makro {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: var(--color-ink);
+}
+
+.prose-makro p {
+  margin: 0.9rem 0;
+}
+
+.prose-makro strong {
+  font-weight: 600;
+}
+
+.prose-makro a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.prose-makro h3 {
+  font-family: var(--font-sans);
+  font-size: 1.105rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-makro ul,
+.prose-makro ol {
+  margin: 0.8rem 0;
+  padding-left: 1.35rem;
+}
+
+.prose-makro li {
+  margin: 0.32rem 0;
+}
+
+.prose-makro li::marker {
+  color: var(--color-muted);
+}
+
+.prose-makro .katex {
+  font-size: 1.035em;
+}
+
+.prose-makro .katex-display {
+  margin: 1.15rem 0;
+  padding: 0.35rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.data-table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--color-ink);
+  vertical-align: bottom;
+}
+
+.data-table td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--color-line);
+  vertical-align: top;
+}
+
+.data-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+
+.callout {
+  border-left: 2px solid var(--color-accent);
+  background: var(--color-accent-soft);
+  padding: 0.95rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.925rem;
+  line-height: 1.6;
+}
+
+.callout-warning {
+  border-left-color: var(--color-danger);
+  background: #f8efed;
+}
+
+.callout-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.formula-card {
+  border: 1px solid var(--color-line);
+  border-left: 3px solid var(--color-accent);
+  background: #fbfbf8;
+  padding: 1.1rem 1.2rem;
+}
+
+.formula-card .katex-display {
+  margin: 0.7rem 0;
+  font-size: 1.16rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.formula-name {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.formula-when {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.variable-list {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.variable-list dt {
+  font-weight: 600;
+  display: inline;
+}
+
+.variable-list dd {
+  display: inline;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.graph-card {
+  border: 1px solid var(--color-line);
+  background: #ffffff;
+  padding: 1.15rem;
+}
+
+@media (min-width: 768px) {
+  .graph-card {
+    padding: 1.5rem;
+  }
+}
+
+.graph-canvas {
+  margin: 1rem 0;
+  min-height: 280px;
+}
+
+.graph-caption {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.graph-controls {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.range-input {
+  accent-color: var(--color-accent);
+  width: 100%;
+  height: 1.25rem;
+  cursor: pointer;
+}
+
+.recharts-text {
+  font-family: var(--font-sans);
+}
+
+details > summary {
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-accent);
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary::before {
+  content: "+";
+  display: inline-block;
+  width: 1rem;
+  color: var(--color-muted);
+}
+
+details[open] > summary::before {
+  content: "−";
+}
+
+.link-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-line);
+  transition: text-decoration-color 150ms ease;
+}
+
+.link-underline:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+.topic-index-link {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr auto;
+  gap: 0.9rem;
+  align-items: baseline;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--color-line);
+  transition: color 150ms ease;
+}
+
+.topic-index-link:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.topic-index-link:hover {
+  color: var(--color-accent);
+}
+
+.topic-index-link .topic-arrow {
+  transition: transform 150ms ease;
+}
+
+.topic-index-link:hover .topic-arrow {
+  transform: translateX(3px);
+}
+
+.katex-display > .katex {
+  text-align: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .container-page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .prose-makro {
+    max-width: none;
+    font-size: 10.5pt;
+  }
+
+  .formula-card,
+  .graph-card,
+  .callout,
+  .data-table tr {
+    break-inside: avoid;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .print-break {
+    break-before: page;
+  }
+
+  @page {
+    margin: 16mm;
+  }
+}
