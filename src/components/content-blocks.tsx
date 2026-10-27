@@ -1,8 +1,7 @@
 import Link from "next/link";
-import type { ContentBlock } from "@/content/types";
-import { graphById } from "@/content/graphs";
+import type { ContentBlock, SubjectBundle } from "@/subjects/types";
 import { GraphDisplayProvider } from "./graphs/graph-display-context";
-import { GraphRenderer } from "./graphs/graph-renderer";
+import { SubjectGraphRenderer } from "./graphs/subject-graph-renderer";
 import { FormulaCard } from "./formula-card";
 import { RichText } from "./rich-text";
 
@@ -20,7 +19,15 @@ function ArrowLink({ href, children }: { href: string; children: React.ReactNode
   );
 }
 
-export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
+export function ContentBlocks({
+  blocks,
+  subject,
+}: {
+  blocks: ContentBlock[];
+  subject: SubjectBundle;
+}) {
+  const subjectPath = `/${subject.meta.slug}`;
+
   return (
     <>
       {blocks.map((block, index) => {
@@ -83,12 +90,19 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
               </div>
             );
 
-          case "formula":
+          case "formula": {
+            const formula = subject.formulas.find(
+              (item) => item.id === block.formulaId,
+            );
+
+            if (!formula) return null;
+
             return (
               <div key={index} className="my-5">
-                <FormulaCard formulaId={block.formulaId} />
+                <FormulaCard formula={formula} />
               </div>
             );
+          }
 
           case "callout":
             return (
@@ -145,14 +159,15 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
             return (
               <div key={index} className="my-8 lg:-mx-24">
                 <GraphDisplayProvider compact>
-                  <GraphRenderer
+                  <SubjectGraphRenderer
+                    subject={subject.meta.slug}
                     id={block.graphId}
                     figure={block.figure}
                   />
                 </GraphDisplayProvider>
                 <p className="mt-2 font-sans text-xs text-muted">
                   <Link
-                    href={`/grafy/${block.graphId}`}
+                    href={`${subjectPath}/grafy/${block.graphId}`}
                     className="link-underline text-accent"
                   >
                     Celý graf, návod a tabulka hodnot →
@@ -162,10 +177,13 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
             );
 
           case "graphLink": {
-            const graph = graphById(block.graphId);
+            const graph = subject.graphs.find(
+              (item) => item.id === block.graphId,
+            );
+
             return (
               <p key={index} className="my-5">
-                <ArrowLink href={`/grafy/${block.graphId}`}>
+                <ArrowLink href={`${subjectPath}/grafy/${block.graphId}`}>
                   {block.label ?? graph?.title ?? "Zobrazit graf"}
                 </ArrowLink>
               </p>

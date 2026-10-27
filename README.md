@@ -1,15 +1,33 @@
-# Makro 204 — studijní atlas
+# fischeat
 
-Minimalistický studijní web k **1. průběžnému testu z Makroekonomie 3MI 204**.
+Studijní rozcestník pro více předmětů. Aktuálně obsahuje **Makro 204**; další
+předměty lze přidat jako samostatné subject bundle.
 
-Obsahuje:
+## Co web obsahuje
 
-- výklad v pěti tématech (národní účty, model produkt–výdaje, peníze, AD–AS, hospodářský cyklus),
-- vzorce a interaktivní grafy přímo v místě, kde se látka vysvětluje,
-- přehlednou stránku vzorců s proměnnými, přehledem symbolů a vysvětlením „kdy použít“,
-- přehledný rozcestník grafů a samostatnou stránku pro každý graf,
-- interaktivní grafy s přepínačem do zkouškového režimu, návodem na kreslení a seznamem častých chyb,
-- interaktivní vzorový test na 25 bodů s automatickým vyhodnocením výpočtů a sebehodnocením grafů.
+- hlavní stránku `fischeat` s výběrem předmětu,
+- předmět **Makro 204** na `/makro-204`,
+- výklad v pěti tématech s interaktivními grafy a vzorci přímo v textu,
+- přehled vzorců se symboly, proměnnými a vysvětlením „kdy použít“,
+- rozcestník grafů a samostatnou stránku pro každý graf,
+- interaktivní vzorový test na 25 bodů,
+- připravenou kartu „Připravujeme“ pro další předmět.
+
+## URL
+
+```text
+/                              výběr předmětu
+/makro-204                     přehled makra
+/makro-204/vyklad              výklad
+/makro-204/vyklad/[tema]       kapitola
+/makro-204/vzorce              vzorce
+/makro-204/grafy               grafy
+/makro-204/grafy/[graf]        detail grafu
+/makro-204/test                vzorový test
+```
+
+Staré adresy (`/vyklad`, `/vzorce`, `/grafy`, `/test`) přesměrovávají na
+`/makro-204/...`.
 
 ## Spuštění
 
@@ -36,29 +54,43 @@ E2E testy používají Playwright a Chromium. Pokud browser ještě není staže
 npx playwright install chromium
 ```
 
-## Struktura
+## Architektura
 
 ```text
 src/
   app/
-    page.tsx                 domovská stránka
-    vyklad/                  výklad a pět kapitol
-    vzorce/                  tisknutelný přehled vzorců a symbolů
-    grafy/                   rozcestník grafů
-    grafy/[slug]/            detail jednoho grafu
-    test/                    vzorový test
+    page.tsx                    # fischeat hub
+    (subjects)/[subject]/       # dynamické stránky předmětu
   components/
-    graphs/                  grafy, ovládání a grafová sada
-    test/                    vyhodnocení testu
-    content-blocks.tsx       společný renderer výkladu
-  content/
-    topics/                  obsah pěti kapitol
-    formulas.ts              vzorce, proměnné a použití
-    graphs.ts                metadata grafů
-    tests/                   datový model testů
-  lib/
-    test-scoring.ts          čistá logika bodování
+    content-blocks.tsx          # společný renderer výkladu
+    graphs/                     # sdílený grafový shell a subject loader
+    test/                       # loader testovacího runneru
+  subjects/
+    types.ts                    # SubjectMeta, SubjectBundle, obsahové typy
+    summaries.ts                # lehké souhrny pro hub
+    registry.ts                 # lazy načítání subject bundle
+    makro-204/
+      meta.ts                   # metadata předmětu
+      topics/                   # výklad
+      formulas.ts               # vzorce
+      graphs.ts                 # metadata grafů
+      test/                     # testovací runner
+      graphs/                   # makro-specifické grafy
 ```
+
+Hlavní stránka načítá pouze `summaries` (lehké souhrny). Plný obsah předmětu se
+načte až na jeho stránkách. Grafy a testy se načítají dynamicky podle předmětu,
+takže hub ani jiné předměty nestahují makro grafový bundle.
+
+### Přidání dalšího předmětu
+
+1. Vytvoř `src/subjects/<slug>/` s `meta.ts`, obsahem a případnými grafy/testy.
+2. Přidej `meta` do `src/subjects/summaries.ts`.
+3. Přidej lazy loader do `src/subjects/registry.ts`.
+4. Pokud má vlastní grafy, přidej renderer do `src/components/graphs/subject-graph-renderer.tsx`.
+5. Pokud má vlastní test, přidej runner do `src/components/test/subject-test-runner.tsx`.
+
+Společné stránky, layouty a komponenty se nemění.
 
 ## Technologie
 
@@ -77,8 +109,6 @@ příkaz je `npm run build`.
 
 ## Poznámky k obsahu
 
-- Obsah vychází z přednášek 1–5 a vzorového testu 3MI 204.
+- Obsah makra vychází z přednášek 1–5 a vzorového testu 3MI 204.
 - PDF podklady nejsou součástí aplikace, nehostují se a jsou v `.gitignore`.
-- U vzorového testu Q1 jsou uvedené přesné i zaokrouhlené hodnoty, protože
-  oficiální řešení používá α ≈ 2,6.
 - Datový model testu (`TestVersion`) je připravený na přidání dalších verzí.

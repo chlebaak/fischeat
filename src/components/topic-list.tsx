@@ -1,13 +1,19 @@
 import Link from "next/link";
-import { topics } from "@/content/topics";
+import type { Topic } from "@/subjects/types";
 
-export function TopicList() {
+export function TopicList({
+  subjectSlug,
+  topics,
+}: {
+  subjectSlug: string;
+  topics: Topic[];
+}) {
   return (
     <div>
       {topics.map((topic) => (
         <Link
           key={topic.slug}
-          href={`/vyklad/${topic.slug}`}
+          href={`/${subjectSlug}/vyklad/${topic.slug}`}
           className="topic-index-link group"
         >
           <span className="font-mono text-xs text-muted">

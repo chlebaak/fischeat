@@ -18,11 +18,11 @@ const sourceSerif = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "Makro 204 — studijní atlas",
-    template: "%s · Makro 204",
+    default: "fischeat — studijní materiály",
+    template: "%s · fischeat",
   },
   description:
-    "Výpisky, vzorce, grafy a interaktivní vzorový test k 1. průběžnému testu z makroekonomie 3MI 204.",
+    "Výpisky, vzorce, grafy a procvičování pro jednotlivé předměty. Vyber si předmět a uč se bez chaosu.",
 };
 
 export const viewport: Viewport = {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sampleTest1 } from "@/content/tests/sample-test-1";
+import { sampleTest1 } from "@/subjects/makro-204/tests/sample-test-1";
 import type { AnswerState } from "./test-scoring";
 import {
   answeredParts,

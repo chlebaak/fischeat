@@ -1,72 +1,39 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { TopicList } from "@/components/topic-list";
+import { subjectSummaries } from "@/subjects/summaries";
 
-const sections = [
-  {
-    href: "/vyklad",
-    number: "01",
-    title: "Výklad",
-    text: "Pět témat od národních účtů po hospodářský cyklus. Všechno podstatné, bez balastu.",
-  },
-  {
-    href: "/vzorce",
-    number: "02",
-    title: "Vzorce",
-    text: "Vzorce pro test rozdělené po tématech. Proměnné a jednoduché „kdy použít“.",
-  },
-  {
-    href: "/grafy",
-    number: "03",
-    title: "Grafy",
-    text: "Každý graf má vlastní stránku: interaktivní ukázku, návod, jak ho nakreslit, a chyby, na které si dát pozor.",
-  },
-  {
-    href: "/test",
-    number: "04",
-    title: "Vzorový test",
-    text: "8 otázek a 25 bodů. Výpočty můžeš zadat, grafy si nakreslit a zkontrolovat.",
-  },
-];
+export const metadata: Metadata = {
+  title: { absolute: "fischeat — studijní materiály" },
+  description:
+    "Výpisky, vzorce, grafy a procvičování pro jednotlivé předměty. Vyber si předmět a uč se bez chaosu.",
+};
 
 export default function HomePage() {
   return (
     <div className="container-page">
-      <section className="grid gap-10 pb-14 pt-16 sm:pb-20 sm:pt-24 lg:grid-cols-[1fr_20rem] lg:gap-20">
+      <section className="grid gap-10 pb-16 pt-16 sm:pb-24 sm:pt-24 lg:grid-cols-[1fr_20rem] lg:gap-20">
         <div className="max-w-3xl">
           <p className="font-sans text-sm text-muted">
-            Makroekonomie 3MI 204 · 1. průběžný test
+            fischeat · studijní materiály
           </p>
-          <h1 className="mt-4 text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.045em] sm:text-[4.4rem]">
-            Výpisky
+          <h1 className="mt-4 text-[3rem] font-semibold leading-[0.98] tracking-[-0.05em] sm:text-[4.8rem]">
+            Uč se
             <br />
-            k prvnímu testu.
+            bez chaosu.
           </h1>
-          <p className="mt-6 max-w-xl font-serif text-[1.08rem] leading-[1.7] text-ink/80 sm:text-[1.15rem]">
-            Pět témat, důležité vzorce, grafy a interaktivní vzorový test.
-            Všechno na jednom místě, připravené na učení i rychlé opakování.
+          <p className="mt-6 max-w-xl font-serif text-[1.1rem] leading-[1.7] text-ink/80 sm:text-[1.2rem]">
+            Výpisky, vzorce, grafy a procvičování na jednom místě. Vyber si
+            předmět a pokračuj tam, kde jsi skončil.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 font-sans text-sm">
-            <Link
-              href="/vyklad"
-              className="inline-flex items-center gap-2 bg-ink px-4 py-2.5 text-paper transition-colors hover:bg-accent"
-            >
-              Začít výkladem
-              <span aria-hidden="true">→</span>
-            </Link>
-            <Link href="/test" className="link-underline text-ink">
-              Vyzkoušet vzorový test
-            </Link>
-          </div>
         </div>
 
         <aside className="hidden border-l border-line pl-8 lg:block">
-          <p className="font-sans text-xs font-medium text-muted">Doporučený postup</p>
+          <p className="font-sans text-xs font-medium text-muted">Jak to funguje</p>
           <ol className="mt-5 space-y-5">
             {[
-              ["01", "Projdi výklad", "Pochop pojmy a souvislosti."],
-              ["02", "Zopakuj vzorce", "Nauč se, kdy který použít."],
-              ["03", "Projdi grafy", "Nakresli je i bez nápovědy."],
-              ["04", "Vyzkoušej test", "Ověř, co už umíš."],
+              ["01", "Vyber předmět", "Každý má vlastní výklad, vzorce i test."],
+              ["02", "Projdi látku", "Výklad, grafy a vzorce drží pohromadě."],
+              ["03", "Otestuj se", "Vzorový test ukáže, co ještě doladit."],
             ].map(([number, title, text]) => (
               <li key={number} className="flex gap-3">
                 <span className="font-mono text-[11px] leading-6 text-muted">
@@ -84,41 +51,71 @@ export default function HomePage() {
         </aside>
       </section>
 
-      <section aria-labelledby="sekce" className="border-t border-line py-12 sm:py-16">
-        <h2 id="sekce" className="font-sans text-2xl font-semibold tracking-[-0.03em]">
-          Co tady najdeš
-        </h2>
-        <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-          {sections.map((section) => (
-            <Link
-              key={section.href}
-              href={section.href}
-              className="group border-t border-line pt-4"
-            >
-              <span className="font-mono text-[11px] text-muted">{section.number}</span>
-              <span className="mt-2 block font-sans text-lg font-semibold tracking-tight transition-colors group-hover:text-accent">
-                {section.title}
-              </span>
-              <span className="mt-2 block font-sans text-sm leading-relaxed text-muted">
-                {section.text}
-              </span>
-            </Link>
-          ))}
+      <section aria-labelledby="predmety" className="border-t border-line py-12 sm:py-16">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 id="predmety" className="font-sans text-2xl font-semibold tracking-[-0.03em]">
+            Předměty
+          </h2>
+          <p className="font-sans text-xs text-muted">Vyber si, co zrovna řešíš.</p>
+        </div>
+
+        <div className="mt-8 grid gap-x-10 gap-y-10 sm:grid-cols-2">
+          {subjectSummaries.map((subject) =>
+            subject.status === "published" ? (
+              <Link
+                key={subject.slug}
+                href={`/${subject.slug}`}
+                className="group border-t border-line pt-5"
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-mono text-[11px] text-muted">
+                    {subject.code}
+                  </span>
+                  <span className="font-sans text-xs text-muted transition-colors group-hover:text-accent">
+                    Otevřít →
+                  </span>
+                </div>
+                <h3 className="mt-3 font-sans text-2xl font-semibold tracking-[-0.03em] transition-colors group-hover:text-accent">
+                  {subject.shortTitle}
+                </h3>
+                <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-muted">
+                  {subject.description}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-x-4 gap-y-1 font-sans text-[11px] text-muted">
+                  <span>{subject.stats.topics} témat</span>
+                  <span>{subject.stats.graphs} grafů</span>
+                  {subject.stats.testPoints ? (
+                    <span>{subject.stats.testPoints} bodů v testu</span>
+                  ) : null}
+                </div>
+              </Link>
+            ) : (
+              <div
+                key={subject.slug}
+                aria-disabled="true"
+                className="border-t border-line pt-5 opacity-60"
+              >
+                <span className="font-sans text-[11px] font-medium text-muted">
+                  Připravujeme
+                </span>
+                <h3 className="mt-3 font-sans text-2xl font-semibold tracking-[-0.03em]">
+                  {subject.title}
+                </h3>
+                <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-muted">
+                  {subject.description}
+                </p>
+              </div>
+            ),
+          )}
         </div>
       </section>
 
-      <section aria-labelledby="temata" className="pb-8">
-        <div className="flex flex-wrap items-baseline justify-between gap-2 border-t border-line pt-12 sm:pt-16">
-          <h2 id="temata" className="font-sans text-2xl font-semibold tracking-[-0.03em]">
-            Pět témat
-          </h2>
-          <Link href="/vyklad" className="link-underline font-sans text-sm text-accent">
-            Celý výklad →
-          </Link>
-        </div>
-        <div className="mt-6">
-          <TopicList />
-        </div>
+      <section className="border-t border-line py-10">
+        <p className="max-w-2xl font-serif text-[1.02rem] leading-[1.75] text-ink/80">
+          fischeat je místo pro výpisky, které dávají smysl. Žádné hledání
+          materiálů po discích a chaotických PDF. Vybereš předmět a jdeš rovnou
+          na věc.
+        </p>
       </section>
     </div>
   );

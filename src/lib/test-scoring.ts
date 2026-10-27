@@ -4,7 +4,7 @@ import type {
   TestQuestion,
   TestVersion,
   TopicId,
-} from "@/content/types";
+} from "@/subjects/types";
 
 export type AnswerState = Record<
   string,

@@ -1,7 +1,15 @@
 import Link from "next/link";
-import { topics } from "@/content/topics";
+import type { Topic } from "@/subjects/types";
 
-export function TopicNav({ activeSlug }: { activeSlug?: string }) {
+export function TopicNav({
+  subjectSlug,
+  topics,
+  activeSlug,
+}: {
+  subjectSlug: string;
+  topics: Topic[];
+  activeSlug?: string;
+}) {
   return (
     <nav
       aria-label="Kapitoly výkladu"
@@ -13,7 +21,7 @@ export function TopicNav({ activeSlug }: { activeSlug?: string }) {
           return (
             <li key={topic.slug}>
               <Link
-                href={`/vyklad/${topic.slug}`}
+                href={`/${subjectSlug}/vyklad/${topic.slug}`}
                 aria-current={active ? "page" : undefined}
                 className={
                   active

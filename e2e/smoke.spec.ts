@@ -21,13 +21,22 @@ const answers: Record<string, string> = {
   "q5c-g": "870",
 };
 
-test("navigation from home to a topic works", async ({ page }) => {
+test("subject hub opens the macro subject and its explanation", async ({
+  page,
+}) => {
   await page.goto("/");
+  await expect(page.getByRole("heading", { name: /Uč se/ })).toBeVisible();
+  await expect(page.getByText("Připravujeme")).toBeVisible();
+
+  await page.getByRole("link", { name: /Makro 204/ }).first().click();
+  await expect(page).toHaveURL(/\/makro-204$/);
   await expect(page.getByRole("heading", { name: /Výpisky/ })).toBeVisible();
+
   await page.getByRole("link", { name: "Začít výkladem" }).click();
-  await expect(page).toHaveURL(/\/vyklad$/);
+  await expect(page).toHaveURL(/\/makro-204\/vyklad$/);
+
   await page.getByRole("link", { name: /Model produkt–výdaje/ }).first().click();
-  await expect(page).toHaveURL(/\/vyklad\/model-vydaje$/);
+  await expect(page).toHaveURL(/\/makro-204\/vyklad\/model-vydaje$/);
   await expect(
     page.getByRole("heading", { name: /Model produkt–výdaje/ }),
   ).toBeVisible();
@@ -37,22 +46,22 @@ test("navigation from home to a topic works", async ({ page }) => {
 });
 
 test("formula and graph pages render rich content", async ({ page }) => {
-  await page.goto("/vzorce");
-  await expect(page.getByRole("heading", { name: "Vzorce pro test" })).toBeVisible();
+  await page.goto("/makro-204/vzorce");
+  await expect(page.getByRole("heading", { name: "Vzorce" })).toBeVisible();
   expect(await page.locator(".formula-card").count()).toBeGreaterThan(25);
   expect(await page.locator(".katex").count()).toBeGreaterThan(20);
 
-  await page.goto("/grafy");
-  await expect(page.getByRole("heading", { name: "Grafy pro test" })).toBeVisible();
+  await page.goto("/makro-204/grafy");
+  await expect(page.getByRole("heading", { name: "Grafy" })).toBeVisible();
   await page.getByRole("link", { name: /Keynesiánský kříž/ }).click();
-  await expect(page).toHaveURL(/\/grafy\/keynesian-cross$/);
+  await expect(page).toHaveURL(/\/makro-204\/grafy\/keynesian-cross$/);
   await expect(page.locator("#keynesian-cross")).toBeVisible();
   expect(await page.locator("#keynesian-cross svg").count()).toBeGreaterThan(0);
   await expect(page.getByText("Na co si dát pozor")).toBeVisible();
 });
 
 test("interactive test can be filled and scored", async ({ page }) => {
-  await page.goto("/test");
+  await page.goto("/makro-204/test");
   await expect(page.getByRole("heading", { name: "Vzorový test 1" })).toBeVisible();
 
   for (const [id, value] of Object.entries(answers)) {
@@ -74,20 +83,35 @@ test("interactive test can be filled and scored", async ({ page }) => {
   await expect(page.getByText("25 bodů celkem")).toBeVisible();
 });
 
+test("old URLs redirect to the macro subject", async ({ page }) => {
+  await page.goto("/vyklad/model-vydaje");
+  await expect(page).toHaveURL(/\/makro-204\/vyklad\/model-vydaje$/);
+
+  await page.goto("/vzorce");
+  await expect(page).toHaveURL(/\/makro-204\/vzorce$/);
+
+  await page.goto("/grafy/keynesian-cross");
+  await expect(page).toHaveURL(/\/makro-204\/grafy\/keynesian-cross$/);
+
+  await page.goto("/test");
+  await expect(page).toHaveURL(/\/makro-204\/test$/);
+});
+
 test("mobile pages do not overflow horizontally", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
 
   for (const route of [
     "/",
-    "/vyklad/narodni-ucty",
-    "/vyklad/model-vydaje",
-    "/vyklad/penize",
-    "/vyklad/ad-as",
-    "/vyklad/cyklus",
-    "/vzorce",
-    "/grafy",
-    "/grafy/keynesian-cross",
-    "/test",
+    "/makro-204",
+    "/makro-204/vyklad/narodni-ucty",
+    "/makro-204/vyklad/model-vydaje",
+    "/makro-204/vyklad/penize",
+    "/makro-204/vyklad/ad-as",
+    "/makro-204/vyklad/cyklus",
+    "/makro-204/vzorce",
+    "/makro-204/grafy",
+    "/makro-204/grafy/keynesian-cross",
+    "/makro-204/test",
   ]) {
     await page.goto(route);
     const overflow = await page.evaluate(

@@ -1,17 +1,13 @@
-import { getFormula } from "@/content/formulas";
-import { Formula } from "./formula";
+import type { Formula } from "@/subjects/types";
+import { Formula as FormulaMath } from "./formula";
 
 export function FormulaCard({
-  formulaId,
+  formula,
   showTestBadge = true,
 }: {
-  formulaId: string;
+  formula: Formula;
   showTestBadge?: boolean;
 }) {
-  const formula = getFormula(formulaId);
-
-  if (!formula) return null;
-
   return (
     <article id={formula.id} className="formula-card scroll-mt-24">
       <div className="flex items-start justify-between gap-4">
@@ -24,14 +20,14 @@ export function FormulaCard({
       </div>
 
       <div className="overflow-x-auto py-1">
-        <Formula latex={formula.latex} />
+        <FormulaMath latex={formula.latex} />
       </div>
 
       <dl className="variable-list mt-2 space-y-1">
         {formula.variables.map((variable) => (
           <div key={variable.symbol}>
             <dt>
-              <Formula latex={variable.symbol} display={false} />
+              <FormulaMath latex={variable.symbol} display={false} />
             </dt>
             <dd> — {variable.meaning}</dd>
           </div>

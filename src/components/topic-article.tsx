@@ -1,34 +1,46 @@
 import Link from "next/link";
-import { getFormula } from "@/content/formulas";
-import { graphById } from "@/content/graphs";
-import { topics } from "@/content/topics";
-import type { Topic } from "@/content/types";
+import type { SubjectBundle, Topic } from "@/subjects/types";
 import { ContentBlocks } from "./content-blocks";
 import { RichText } from "./rich-text";
 import { TopicNav } from "./topic-nav";
 
-export function TopicArticle({ topic }: { topic: Topic }) {
+export function TopicArticle({
+  topic,
+  subject,
+}: {
+  topic: Topic;
+  subject: SubjectBundle;
+}) {
+  const subjectPath = `/${subject.meta.slug}`;
   const topicFormulas = topic.formulaIds.flatMap((id) => {
-    const formula = getFormula(id);
+    const formula = subject.formulas.find((item) => item.id === id);
     return formula ? [formula] : [];
   });
   const topicGraphs = topic.graphIds.flatMap((id) => {
-    const graph = graphById(id);
+    const graph = subject.graphs.find((item) => item.id === id);
     return graph ? [graph] : [];
   });
-  const currentIndex = topics.findIndex((item) => item.slug === topic.slug);
-  const previous = currentIndex > 0 ? topics[currentIndex - 1] : null;
-  const next = currentIndex < topics.length - 1 ? topics[currentIndex + 1] : null;
+  const currentIndex = subject.topics.findIndex((item) => item.slug === topic.slug);
+  const previous = currentIndex > 0 ? subject.topics[currentIndex - 1] : null;
+  const next =
+    currentIndex < subject.topics.length - 1
+      ? subject.topics[currentIndex + 1]
+      : null;
 
   return (
     <div className="container-page">
       <div className="pt-6">
-        <TopicNav activeSlug={topic.slug} />
+        <TopicNav
+          subjectSlug={subject.meta.slug}
+          topics={subject.topics}
+          activeSlug={topic.slug}
+        />
       </div>
 
       <header className="container-prose pt-12 sm:pt-16">
         <p className="font-sans text-sm text-muted">
-          Téma {String(topic.number).padStart(2, "0")} / 05
+          Téma {String(topic.number).padStart(2, "0")} /{" "}
+          {String(subject.topics.length).padStart(2, "0")}
         </p>
         <h1 className="mt-3 text-[2.15rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-[3.1rem]">
           {topic.title}
@@ -45,7 +57,10 @@ export function TopicArticle({ topic }: { topic: Topic }) {
                 key={item}
                 className="flex gap-3 font-serif text-[0.98rem] leading-[1.6]"
               >
-                <span aria-hidden="true" className="mt-[0.6rem] h-px w-3 shrink-0 bg-accent" />
+                <span
+                  aria-hidden="true"
+                  className="mt-[0.6rem] h-px w-3 shrink-0 bg-accent"
+                />
                 <span>
                   <RichText text={item} />
                 </span>
@@ -62,7 +77,10 @@ export function TopicArticle({ topic }: { topic: Topic }) {
               {topic.testQuestionIds.map((id, index) => (
                 <span key={id}>
                   {index > 0 ? ", " : ""}
-                  <Link href={`/test#${id}`} className="link-underline text-accent">
+                  <Link
+                    href={`${subjectPath}/test#${id}`}
+                    className="link-underline text-accent"
+                  >
                     {id.toUpperCase()}
                   </Link>
                 </span>
@@ -71,26 +89,24 @@ export function TopicArticle({ topic }: { topic: Topic }) {
           ) : null}
         </div>
 
-        {topic.sections.length > 1 ? (
-          <details className="mt-6 border-y border-line py-3">
-            <summary>Obsah kapitoly</summary>
-            <ol className="mt-3 grid gap-x-6 gap-y-1 font-sans text-sm sm:grid-cols-2">
-              {topic.sections.map((section, index) => (
-                <li key={section.id} className="flex gap-2">
-                  <span className="font-mono text-[11px] text-muted">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <a
-                    href={`#${section.id}`}
-                    className="text-muted transition-colors hover:text-accent"
-                  >
-                    {section.title}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </details>
-        ) : null}
+        <details className="mt-6 border-y border-line py-3">
+          <summary>Obsah kapitoly</summary>
+          <ol className="mt-3 grid gap-x-6 gap-y-1 font-sans text-sm sm:grid-cols-2">
+            {topic.sections.map((section, index) => (
+              <li key={section.id} className="flex gap-2">
+                <span className="font-mono text-[11px] text-muted">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <a
+                  href={`#${section.id}`}
+                  className="text-muted transition-colors hover:text-accent"
+                >
+                  {section.title}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </details>
       </header>
 
       <article className="container-prose prose-makro pb-10 pt-4">
@@ -99,7 +115,7 @@ export function TopicArticle({ topic }: { topic: Topic }) {
             <h2 className="mt-14 border-t border-line pt-6 font-sans text-[1.65rem] font-semibold leading-tight tracking-[-0.025em] sm:text-[1.85rem]">
               {section.title}
             </h2>
-            <ContentBlocks blocks={section.blocks} />
+            <ContentBlocks blocks={section.blocks} subject={subject} />
           </section>
         ))}
       </article>
@@ -112,7 +128,7 @@ export function TopicArticle({ topic }: { topic: Topic }) {
               {topicFormulas.slice(0, 6).map((formula) => (
                 <li key={formula.id}>
                   <Link
-                    href={`/vzorce#${formula.id}`}
+                    href={`${subjectPath}/vzorce#${formula.id}`}
                     className="link-underline text-accent"
                   >
                     {formula.name}
@@ -120,7 +136,10 @@ export function TopicArticle({ topic }: { topic: Topic }) {
                 </li>
               ))}
               <li>
-                <Link href="/vzorce" className="link-underline text-ink">
+                <Link
+                  href={`${subjectPath}/vzorce`}
+                  className="link-underline text-ink"
+                >
                   Všechny vzorce →
                 </Link>
               </li>
@@ -132,7 +151,7 @@ export function TopicArticle({ topic }: { topic: Topic }) {
               {topicGraphs.map((graph) => (
                 <li key={graph.id}>
                   <Link
-                    href={`/grafy/${graph.id}`}
+                    href={`${subjectPath}/grafy/${graph.id}`}
                     className="link-underline text-accent"
                   >
                     {graph.title}
@@ -140,7 +159,10 @@ export function TopicArticle({ topic }: { topic: Topic }) {
                 </li>
               ))}
               <li>
-                <Link href="/grafy" className="link-underline text-ink">
+                <Link
+                  href={`${subjectPath}/grafy`}
+                  className="link-underline text-ink"
+                >
                   Všechny grafy →
                 </Link>
               </li>
@@ -154,7 +176,10 @@ export function TopicArticle({ topic }: { topic: Topic }) {
         className="no-print container-prose grid gap-4 border-t border-line py-8 sm:grid-cols-2"
       >
         {previous ? (
-          <Link href={`/vyklad/${previous.slug}`} className="group">
+          <Link
+            href={`${subjectPath}/vyklad/${previous.slug}`}
+            className="group"
+          >
             <span className="font-sans text-xs text-muted">Předchozí</span>
             <span className="mt-1 block font-sans text-sm font-medium transition-colors group-hover:text-accent">
               ← {previous.shortTitle}
@@ -164,14 +189,17 @@ export function TopicArticle({ topic }: { topic: Topic }) {
           <span />
         )}
         {next ? (
-          <Link href={`/vyklad/${next.slug}`} className="group sm:text-right">
+          <Link
+            href={`${subjectPath}/vyklad/${next.slug}`}
+            className="group sm:text-right"
+          >
             <span className="font-sans text-xs text-muted">Další</span>
             <span className="mt-1 block font-sans text-sm font-medium transition-colors group-hover:text-accent">
               {next.shortTitle} →
             </span>
           </Link>
         ) : (
-          <Link href="/test" className="group sm:text-right">
+          <Link href={`${subjectPath}/test`} className="group sm:text-right">
             <span className="font-sans text-xs text-muted">Další krok</span>
             <span className="mt-1 block font-sans text-sm font-medium transition-colors group-hover:text-accent">
               Vzorový test →
