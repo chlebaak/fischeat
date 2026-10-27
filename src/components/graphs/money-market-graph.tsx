@@ -11,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { formatNumber } from "@/lib/format";
+import { formatDecimal, formatNumber } from "@/lib/format";
 import { CHART, axisProps, chartMargin } from "./chart-theme";
 import { ChartLegend } from "./chart-legend";
 import { ClientOnly } from "./client-only";
@@ -107,7 +107,7 @@ export function MoneyMarketGraph({ figure }: { figure?: string }) {
             max={0.3}
             step={0.01}
             onChange={setK}
-            format={(value) => value.toFixed(2)}
+            format={(value) => formatDecimal(value, 2)}
           />
           <ControlSlider
             label="Citlivost na úrok h"
@@ -147,7 +147,7 @@ export function MoneyMarketGraph({ figure }: { figure?: string }) {
                 ? "0 (pod nulou)"
                 : model.equilibriumI > 20
                   ? "mimo rozsah"
-                  : `${model.equilibriumI.toFixed(1)} %`}
+                  : `${formatDecimal(model.equilibriumI, 1)} %`}
             </span>
             <span>MD při i = 0: {formatNumber(model.mdIntercept)}</span>
           </div>
@@ -214,11 +214,6 @@ export function MoneyMarketGraph({ figure }: { figure?: string }) {
               />
               {equilibriumVisible ? (
                 <>
-                  <ReferenceLine
-                    x={ms}
-                    stroke={CHART.guide}
-                    strokeDasharray="3 4"
-                  />
                   <ReferenceLine
                     y={model.equilibriumI}
                     stroke={CHART.guide}

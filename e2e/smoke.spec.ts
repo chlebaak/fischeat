@@ -41,8 +41,11 @@ test("formula and graph pages render rich content", async ({ page }) => {
 
   await page.goto("/grafy");
   await expect(page.getByRole("heading", { name: "Grafy pro test" })).toBeVisible();
+  await page.getByRole("link", { name: /Keynesiánský kříž/ }).click();
+  await expect(page).toHaveURL(/\/grafy\/keynesian-cross$/);
   await expect(page.locator("#keynesian-cross")).toBeVisible();
   expect(await page.locator("#keynesian-cross svg").count()).toBeGreaterThan(0);
+  await expect(page.getByText("Na co si dát pozor")).toBeVisible();
 });
 
 test("interactive test can be filled and scored", async ({ page }) => {
@@ -71,7 +74,14 @@ test("interactive test can be filled and scored", async ({ page }) => {
 test("mobile pages do not overflow horizontally", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
 
-  for (const route of ["/", "/vyklad/model-vydaje", "/vzorce", "/grafy", "/test"]) {
+  for (const route of [
+    "/",
+    "/vyklad/model-vydaje",
+    "/vzorce",
+    "/grafy",
+    "/grafy/keynesian-cross",
+    "/test",
+  ]) {
     await page.goto(route);
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - window.innerWidth,

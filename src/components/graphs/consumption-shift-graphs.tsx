@@ -100,13 +100,13 @@ export function ConsumptionShiftGraphs() {
         />
         <Panel
           title="b) negativní očekávání"
-          description="C_A klesá, křivka se posouvá dolů."
+          description="Autonomní spotřeba klesá, křivka se posouvá dolů."
           base={[0, 60, 100, 80]}
           changed={[0, 45, 100, 65]}
         />
         <Panel
           title="c) růst bohatství"
-          description="C_A roste, křivka se posouvá nahoru."
+          description="Autonomní spotřeba roste, křivka se posouvá nahoru."
           base={[0, 40, 100, 70]}
           changed={[0, 60, 100, 90]}
         />

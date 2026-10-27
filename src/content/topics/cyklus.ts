@@ -7,7 +7,7 @@ export const cyklus: Topic = {
   title: "Hospodářský cyklus a produkční mezera",
   shortTitle: "Hospodářský cyklus",
   intro:
-    "Ekonomika neroste rovně. Střídá fáze expanze a recese kolem potenciálního produktu. Kapitola vysvětluje fáze, typy cyklů, output gap a cyklické chování veličin.",
+    "Ekonomika neroste rovně. Střídá fáze expanze a recese kolem potenciálního produktu. Kapitola vysvětluje fáze, typy cyklů, produkční mezeru a cyklické chování veličin.",
   takeaways: [
     "Hospodářský cyklus je kolísání reálného HDP kolem potenciálního produktu.",
     "Kladná produkční mezera znamená přehřátí, záporná nevyužité kapacity.",
@@ -76,7 +76,7 @@ export const cyklus: Topic = {
       blocks: [
         {
           type: "paragraph",
-          text: "**Potenciální produkt $Y^*$** je maximální dlouhodobě udržitelný výkon ekonomiky při optimálním využití výrobních faktorů a stabilní inflaci. Odhaduje se obtížně; nejde o přesné číslo.",
+          text: "**Potenciální produkt $Y^*$** je maximální dlouhodobě udržitelný výkon ekonomiky při optimálním využití výrobních faktorů a stabilní inflaci. Odhaduje se obtížně; nejde o přesné číslo. Rozdíl mezi skutečným a potenciálním produktem se nazývá **produkční mezera** (často se používá i anglický termín output gap).",
         },
         { type: "formula", formulaId: "output-gap" },
         {
@@ -127,7 +127,7 @@ export const cyklus: Topic = {
       blocks: [
         {
           type: "paragraph",
-          text: "Cykly mohou vznikat z **poptávkových šoků**, **nabídkových šoků** nebo z **politického hospodářského cyklu**, kdy se vláda snaží stimulovat ekonomiku před volbami.",
+          text: "Cykly mohou vznikat z **poptávkových šoků**, **nabídkových šoků** nebo z **politického hospodářského cyklu**, kdy se vláda snaží stimulovat ekonomiku před volbami. Po volbách může naopak utahovat, aby dostala inflaci pod kontrolu.",
         },
         {
           type: "list",
@@ -159,7 +159,7 @@ export const cyklus: Topic = {
           items: [
             "Cyklus = kolísání Y kolem Y*.",
             "Fáze: dno → expanze → vrchol → recese.",
-            "Output gap = (Y − Y*) / Y* × 100.",
+            "Produkční mezera = (Y − Y*) / Y* × 100.",
             "Procyklické: C, I, M, MS; kontracyklické: nezaměstnanost; acyklické: G, reálné úrokové sazby.",
             "Poptávkový cyklus: P procyklická; nabídkový cyklus: P proticyklická.",
           ],
@@ -168,7 +168,7 @@ export const cyklus: Topic = {
           type: "callout",
           variant: "warning",
           title: "Nejčastější chyby",
-          text: "Záměna potenciálního produktu a maxima, kladná mezera jako „dobrá“ bez inflačních tlaků, záměna stagflace a recese, zapomenutí, že output gap je v procentech Y*.",
+          text: "Záměna potenciálního produktu a maxima, kladná mezera jako „dobrá“ bez inflačních tlaků, záměna stagflace a recese, zapomenutí, že produkční mezera je v procentech Y*.",
         },
       ],
     },

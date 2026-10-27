@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { RichText } from "@/components/rich-text";
+import { useGraphDisplay } from "./graph-display-context";
 
 type GraphTable = {
   headers: string[];
@@ -34,6 +35,7 @@ export function GraphShell({
   readOnly?: boolean;
 }) {
   const [examMode, setExamMode] = useState(false);
+  const { hideTitle } = useGraphDisplay();
   const hasControls = Boolean(controls) && !readOnly;
 
   return (
@@ -42,14 +44,34 @@ export function GraphShell({
       className={`graph-card scroll-mt-24 ${compact ? "p-4 sm:p-5" : ""}`}
     >
       <figcaption>
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          {figure ? (
-            <span className="font-mono text-[11px] text-muted">{figure}</span>
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            {figure ? (
+              <span className="font-mono text-[11px] text-muted">{figure}</span>
+            ) : null}
+            <h3
+              className={
+                hideTitle
+                  ? "sr-only"
+                  : "font-sans text-[17px] font-semibold leading-snug tracking-[-0.02em] sm:text-lg"
+              }
+            >
+              {title}
+            </h3>
+          </div>
+
+          {hasControls ? (
+            <button
+              type="button"
+              aria-pressed={examMode}
+              onClick={() => setExamMode((current) => !current)}
+              className="shrink-0 border border-line px-2.5 py-1.5 font-sans text-[11px] text-muted transition-colors hover:border-accent hover:text-accent"
+            >
+              {examMode ? "Zpět na interaktivní" : "Zkouškový obrázek"}
+            </button>
           ) : null}
-          <h3 className="font-sans text-[17px] font-semibold leading-snug tracking-[-0.02em] sm:text-lg">
-            {title}
-          </h3>
         </div>
+
         {description && !compact ? (
           <p className="graph-caption mt-2 max-w-2xl">
             <RichText text={description} />
@@ -59,26 +81,19 @@ export function GraphShell({
 
       <div className="graph-canvas">{children}</div>
 
-      {hasControls && !examMode ? (
-        <div className="graph-controls">{controls}</div>
+      {hasControls ? (
+        <div
+          className="font-sans text-[11px] text-muted"
+          aria-live="polite"
+        >
+          {examMode
+            ? "Ovládání je skryté. Graf zůstává v posledním nastavení."
+            : "Posuň parametry a sleduj, co se změní."}
+        </div>
       ) : null}
 
-      {hasControls ? (
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
-          <p className="font-sans text-[11px] text-muted">
-            {examMode
-              ? "Ovládání je skryté. Graf zůstává v posledním nastavení."
-              : "Posuň parametry a sleduj, co se změní."}
-          </p>
-          <button
-            type="button"
-            aria-pressed={examMode}
-            onClick={() => setExamMode((current) => !current)}
-            className="font-sans text-xs text-accent underline decoration-line underline-offset-4 transition-colors hover:decoration-accent"
-          >
-            {examMode ? "Zpět na interaktivní" : "Zkouškový obrázek"}
-          </button>
-        </div>
+      {hasControls && !examMode ? (
+        <div className="graph-controls">{controls}</div>
       ) : null}
 
       {note && !compact ? (
@@ -93,8 +108,11 @@ export function GraphShell({
           <ul className="mt-2 space-y-1 font-sans text-xs leading-relaxed text-muted">
             {checklist.map((item) => (
               <li key={item} className="flex gap-2">
-                <span aria-hidden="true" className="mt-1.5 h-px w-2 shrink-0 bg-line" />
-                <span>{item}</span>
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 h-px w-2 shrink-0 bg-line"
+                />
+                <span><RichText text={item} /></span>
               </li>
             ))}
           </ul>

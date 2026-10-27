@@ -11,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { formatNumber } from "@/lib/format";
+import { formatDecimal, formatNumber } from "@/lib/format";
 import { CHART, axisProps, chartMargin } from "./chart-theme";
 import { ChartLegend } from "./chart-legend";
 import { ClientOnly } from "./client-only";
@@ -56,16 +56,16 @@ export function ConsumptionSavingsGraph({ figure }: { figure?: string }) {
       description="Změna c mění sklon, změna autonomní spotřeby posouvá křivku. Přesně tento rozdíl řeší Q3 a Q6."
       checklist={[
         "Označ osy YD a C, respektive YD a S.",
-        "Vyznač autonomní spotřebu C_A jako průsečík s osou C.",
+        "Vyznač autonomní spotřebu $C_A$ jako průsečík s osou $C$.",
         "Spoj C a S vztahem c + s = 1.",
         "U posunu kresli rovnoběžku, u změny sklonu změň sklon.",
       ]}
       table={table}
-      note="Změna c mění sklon. Změna C_A posouvá celou křivku rovnoběžně. V grafu úspor je autonomní část −C_A."
+      note="Změna c mění sklon. Změna autonomní spotřeby posouvá celou křivku rovnoběžně. V grafu úspor je autonomní část záporná."
       controls={
         <>
           <ControlSlider
-            label="Autonomní spotřeba C_A"
+            label="Autonomní spotřeba"
             value={ca}
             min={0}
             max={300}
@@ -79,17 +79,18 @@ export function ConsumptionSavingsGraph({ figure }: { figure?: string }) {
             max={0.95}
             step={0.01}
             onChange={setC}
-            format={(value) => value.toFixed(2)}
+            format={(value) => formatDecimal(value, 2)}
           />
           <div className="flex flex-wrap gap-x-6 gap-y-1 font-sans text-xs text-muted">
-            <span>s = 1 − c = {s.toFixed(2)}</span>
-            <span>APC při YD = 1000: {((ca + c * 1000) / 1000).toFixed(3)}</span>
+            <span>s = 1 − c = {formatDecimal(s, 2)}</span>
+            <span>APC při YD = 1000: {formatDecimal((ca + c * 1000) / 1000, 3)}</span>
           </div>
         </>
       }
     >
-      <div className="space-y-5">
+      <div className="grid gap-6 lg:grid-cols-2">
         <div>
+          <p className="mb-1 font-sans text-xs font-semibold">Spotřeba</p>
           <ChartLegend
             items={[
               { label: "spotřeba C", color: CHART.accent },
@@ -104,6 +105,7 @@ export function ConsumptionSavingsGraph({ figure }: { figure?: string }) {
                   <XAxis
                     dataKey="yd"
                     {...axisProps}
+                    ticks={[0, 500, 1000, 1500, 2000]}
                     tickFormatter={(value: number) => value.toLocaleString("cs-CZ")}
                     label={{
                       value: "YD",
@@ -166,6 +168,7 @@ export function ConsumptionSavingsGraph({ figure }: { figure?: string }) {
         </div>
 
         <div>
+          <p className="mb-1 font-sans text-xs font-semibold">Úspory</p>
           <ChartLegend
             items={[
               { label: "úspory S", color: CHART.secondary },
@@ -180,6 +183,7 @@ export function ConsumptionSavingsGraph({ figure }: { figure?: string }) {
                   <XAxis
                     dataKey="yd"
                     {...axisProps}
+                    ticks={[0, 500, 1000, 1500, 2000]}
                     tickFormatter={(value: number) => value.toLocaleString("cs-CZ")}
                     label={{
                       value: "YD",

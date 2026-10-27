@@ -143,7 +143,7 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
             const graph = graphById(block.graphId);
             return (
               <p key={index} className="my-5">
-                <ArrowLink href={`/grafy#${block.graphId}`}>
+                <ArrowLink href={`/grafy/${block.graphId}`}>
                   {block.label ?? graph?.title ?? "Zobrazit graf"}
                 </ArrowLink>
               </p>

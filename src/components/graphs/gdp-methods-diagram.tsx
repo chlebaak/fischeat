@@ -30,7 +30,7 @@ export function GdpMethodsDiagram({ figure }: { figure?: string }) {
       description="Výdajová, výrobní a důchodová metoda jsou tři pohledy na stejný tok. Liší se jen tím, odkud se na produkt díváš."
       checklist={[
         "Napiš, co je finální statek a co meziprodukt.",
-        "U výdajové metody označ C, I_B, G a NX.",
+        "U výdajové metody označ $C$, $I_B$, $G$ a $NX$.",
         "U výrobní metody sečti přidanou hodnotu, ne produkci.",
         "U důchodové metody nezapomeň na odpisy a nepřímé daně.",
       ]}

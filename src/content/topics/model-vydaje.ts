@@ -69,11 +69,19 @@ export const modelVydaje: Topic = {
         { type: "formula", formulaId: "consumption" },
         {
           type: "paragraph",
+          text: "**Autonomní spotřeba $C_A$** je část spotřeby, která nezávisí na běžném důchodu. Domácnost ji financuje z úspor nebo z půjčky. Proto je při nulovém důchodu spotřeba kladná a úspory záporné.",
+        },
+        {
+          type: "paragraph",
           text: "Mezní sklon ke spotřebě $c$ říká, o kolik vzroste spotřeba, když disponibilní důchod vzroste o jednotku. Úsporová funkce je její zrcadlový obraz:",
         },
         { type: "formula", formulaId: "savings" },
         { type: "formula", formulaId: "mpc-mps" },
         { type: "formula", formulaId: "apc-aps" },
+        {
+          type: "paragraph",
+          text: "**$c$ není totéž co APC.** $c$ je změna spotřeby při změně důchodu o jednotku. APC je podíl spotřeby na celkovém důchodu. Proto se mohou lišit.",
+        },
         {
           type: "paragraph",
           text: "Změna $c$ mění **sklon** křivky. Změna autonomní spotřeby $C_A$ posouvá celou křivku **rovnoběžně** nahoru nebo dolů.",
@@ -82,7 +90,7 @@ export const modelVydaje: Topic = {
           type: "example",
           title: "Vzorový test Q3 – úspory a spotřeba",
           prompt:
-            "Disponibilní důchod 800, 1100, 1250; úspory 120, 180, 210. Najdi úsporovou funkci, spotřebu při YD = 1400 a APC při YD = 1700.",
+            "Disponibilní důchod 800, 1100, 1250; úspory 120, 180, 210. Najdi úsporovou funkci, spotřebu při $YD = 1400$ a $APC$ při $YD = 1700$.",
           steps: [
             {
               label: "Mezní sklon k úsporám",
@@ -107,7 +115,7 @@ export const modelVydaje: Topic = {
         {
           type: "callout",
           variant: "note",
-          title: "Q6 – tři typy posunu",
+          title: "Q6 – tři situace v grafu",
           text: "Pokles mezního sklonu k úsporám znamená růst c, tedy strmější spotřební funkci. Negativní očekávání sníží autonomní spotřebu a posunou křivku dolů. Růst bohatství ji posune nahoru.",
         },
         { type: "graphLink", graphId: "consumption-savings" },
@@ -125,12 +133,20 @@ export const modelVydaje: Topic = {
           type: "paragraph",
           text: "$Y = C + I_P$ a zároveň $I_P = S$. Skutečné investice se rovnají plánovaným jen tehdy, když jsou neplánované zásoby nulové.",
         },
+        {
+          type: "paragraph",
+          text: "V grafu je na ose x produkt $Y$ a na ose y plánované výdaje $AE$. Přímka 45° spojuje body, kde se produkt rovná výdajům. Rovnováha je průsečík této přímky s křivkou $AE$.",
+        },
         { type: "formula", formulaId: "multiplier-2" },
+        {
+          type: "paragraph",
+          text: "**Proč je multiplikátor větší než 1?** První výdaj se stane příjmem domácností. Ty z něj část utratí, tato část se stane příjmem někoho dalšího, a tak to jde dál. Čím větší je $c$, tím více z každé další koruny zůstane v ekonomice.",
+        },
         {
           type: "example",
           title: "Dvousektorový příklad",
           prompt:
-            "S = −200 + 0,1YD, plánované investice I = 300. Najdi rovnovážný produkt a multiplikátor.",
+            "$S = -200 + 0{,}1YD$, plánované investice $I = 300$. Najdi rovnovážný produkt a multiplikátor.",
           steps: [
             {
               label: "Rovnováha",
@@ -156,13 +172,13 @@ export const modelVydaje: Topic = {
       blocks: [
         {
           type: "paragraph",
-          text: "Vláda vstupuje třemi kanály: vybírá daně, poskytuje transfery a nakupuje statky a služby. Mění tak disponibilní důchod:",
+          text: "Vláda vstupuje třemi kanály: vybírá daně, poskytuje transfery a nakupuje statky a služby. Daně a transfery mění disponibilní důchod, vládní nákupy jdou přímo do plánovaných výdajů.",
         },
         { type: "formula", formulaId: "yd-taxes" },
         { type: "formula", formulaId: "multiplier-3" },
         {
           type: "paragraph",
-          text: "Podmínka rovnováhy se dá zapsat i jako rovnost přítoků a úniků: $I + G = S + NT$. Multiplikátor je menší než ve dvousektorové ekonomice, protože část každé dodatečné koruny odejde na daních.",
+          text: "Podmínka rovnováhy se dá zapsat i jako rovnost přítoků a úniků: $I_P + G = S + NT$. Multiplikátor je menší než ve dvousektorové ekonomice, protože část každé dodatečné koruny odejde na daních.",
         },
         {
           type: "table",
@@ -187,17 +203,23 @@ export const modelVydaje: Topic = {
       blocks: [
         {
           type: "paragraph",
-          text: "Otevřená ekonomika přidává export a import. Import roste s domácím produktem, proto z rovnováhy odčerpává část výdajů:",
+          text: "Otevřená ekonomika přidává export a import. Export je přítok do ekonomiky, import je únik. Import navíc roste s domácím produktem, proto z každé další koruny část odtéká do zahraničí:",
         },
         { type: "formula", formulaId: "nx" },
         { type: "formula", formulaId: "multiplier-4" },
         { type: "formula", formulaId: "equilibrium-4" },
         { type: "formula", formulaId: "injections-leakages" },
         {
+          type: "callout",
+          variant: "note",
+          title: "Značení investic",
+          text: "V zadání se plánované investice často značí jen $I$. V těchto výpiscích používáme $I_P$, aby se nepletly s důchody a jinými veličinami.",
+        },
+        {
           type: "example",
           title: "Vzorový test Q1 – čtyřsektorová ekonomika",
           prompt:
-            "C_A = 300, c = 0,8, I = 600, m = 0,1, TR = 120, t = 0,1, G = 320, X_A = 410, M_A = 340, T_A = 170. Vypočítej multiplikátor, rovnovážný produkt, čistý export a změnu produktu při ΔT_A = +50 a ΔG = −20.",
+            "$C_A = 300$, $c = 0,8$, $I = 600$ (plánované investice), $m = 0,1$, $TR = 120$, $t = 0,1$, $G = 320$, $X_A = 410$, $M_A = 340$, $T_A = 170$. Vypočítej multiplikátor, rovnovážný produkt, čistý export a změnu produktu při $\\Delta T_A = +50$ a $\\Delta G = -20$.",
           steps: [
             {
               label: "Multiplikátor",
@@ -264,7 +286,7 @@ export const modelVydaje: Topic = {
             "$C = C_A + cYD$, $S = -S_A + sYD$, $c+s=1$.",
             "Rovnováha: $Y = C + I_P$, potažmo $I_P = S$.",
             "Multiplikátor: 2 sektory $1/(1-c)$, 3 sektory $1/[1-c(1-t)]$, 4 sektory $1/[1-c(1-t)+m]$.",
-            "Přítoky = úniky: $I + G + X = S + NT + M$.",
+            "Přítoky = úniky: $I_P + G + X = S + NT + M$.",
             "Změna autonomních výdajů posouvá křivku, změna c, t nebo m mění její sklon.",
           ],
         },

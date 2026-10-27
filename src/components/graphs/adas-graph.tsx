@@ -11,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { formatNumber } from "@/lib/format";
+import { formatDecimal, formatNumber } from "@/lib/format";
 import { CHART, axisProps, chartMargin } from "./chart-theme";
 import { ChartLegend } from "./chart-legend";
 import { ClientOnly } from "./client-only";
@@ -93,7 +93,7 @@ export function AdAsGraph({
     rows: [
       ["Produkt Y", formatNumber(model.sr.y), formatNumber(POTENTIAL)],
       ["Cenová hladina P", formatNumber(model.sr.p), formatNumber(model.lrP)],
-      ["Produkční mezera", `${model.gap.toFixed(1)} %`, "0 %"],
+      ["Produkční mezera", `${formatDecimal(model.gap, 1)} %`, "0 %"],
     ],
   };
 
@@ -193,7 +193,7 @@ export function AdAsGraph({
             </span>
             <span className={model.gap >= 0 ? "text-accent" : "text-danger"}>
               mezera {model.gap >= 0 ? "+" : ""}
-              {model.gap.toFixed(1)} %
+              {formatDecimal(model.gap, 1)} %
             </span>
             {showLongRun ? (
               <span className="text-muted">
@@ -208,7 +208,16 @@ export function AdAsGraph({
         items={[
           { label: "AD", color: CHART.accent },
           { label: "SAS", color: CHART.secondary },
-          { label: "LAS", color: CHART.guide, dashed: true },
+          { label: "LAS = Y*", color: CHART.guide, dashed: true },
+          ...(showLongRun
+            ? [
+                {
+                  label: "SAS v dlouhém období",
+                  color: CHART.secondary,
+                  dashed: true,
+                },
+              ]
+            : []),
           ...(model.hasShock
             ? [{ label: "původní křivky", color: CHART.guide, dashed: true }]
             : []),
@@ -250,7 +259,7 @@ export function AdAsGraph({
                 stroke={CHART.guide}
                 strokeDasharray="5 5"
                 label={{
-                  value: "LAS",
+                  value: "LAS = Y*",
                   position: "top",
                   fill: CHART.muted,
                   fontSize: 11,

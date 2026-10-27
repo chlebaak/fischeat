@@ -22,6 +22,8 @@ export const narodniUcty: Topic = {
     "cdp",
     "deflator",
     "real-gdp",
+    "nominal-gdp",
+    "cnd",
     "yd",
     "identity-savings",
     "gdp-identity",
@@ -55,7 +57,16 @@ export const narodniUcty: Topic = {
         },
         {
           type: "paragraph",
-          text: "V makroekonomickém koloběhu proti sobě proudí statky a služby, peníze a výrobní faktory mezi domácnostmi, firmami, vládou, zahraničím a finančním trhem. Pro test si stačí pamatovat, že **domácnosti nabízejí výrobní faktory a poptávají statky**, firmy vyrábějí a poptávají výrobní faktory, vláda vybírá daně a poskytuje transfery a zahraniční sektor řeší export a import.",
+          text: "V makroekonomickém koloběhu obíhají statky a služby, peníze a výrobní faktory mezi domácnostmi, firmami, vládou, zahraničím a finančním trhem. Pro test si stačí pamatovat čtyři základní role:",
+        },
+        {
+          type: "list",
+          items: [
+            "**Domácnosti** nabízejí práci a kapitál, dostávají za ně důchody a utrácejí za statky.",
+            "**Firmy** najímají výrobní faktory, vyrábějí statky a prodávají je.",
+            "**Vláda** vybírá daně, poskytuje transfery a nakupuje statky a služby.",
+            "**Zahraničí** prodává importy a kupuje exporty.",
+          ],
         },
         {
           type: "callout",
@@ -84,6 +95,14 @@ export const narodniUcty: Topic = {
         },
         {
           type: "paragraph",
+          text: "Zásadní je slovo **finální**. Když se do HDP započítá i meziprodukt, jeho hodnota se objeví dvakrát: jednou samostatně a podruhé v ceně finálního statku. Proto HDP měří jen to, co je určeno ke konečnému užití.",
+        },
+        {
+          type: "paragraph",
+          text: "**HDP je tok** (za určité období), **národní bohatství je stav** (k určitému datu). Podobně mzda je tok, zůstatek na účtu je stav.",
+        },
+        {
+          type: "paragraph",
           text: "HDP není ukazatel blahobytu. Nezachycuje **šedou a černou ekonomiku**, hodnotu **volného času**, práci v domácnosti, netržní statky ani **externality** jako znečištění. Proto se používá širší ukazatel **čistý ekonomický blahobyt (NEW)**.",
         },
         {
@@ -103,6 +122,10 @@ export const narodniUcty: Topic = {
           text: "**Hrubý národní důchod (HND)** sleduje důchody rezidentů bez ohledu na to, kde vznikly. Platí:",
         },
         { type: "formula", formulaId: "hnd" },
+        {
+          type: "paragraph",
+          text: "Rozdíl si představ takto: HDP říká, co se vyrobilo **na území ČR**. HND říká, co z toho plyne **českým rezidentům** jako důchod. Když zahraniční firmy v ČR vydělají více, než Češi vydělají v zahraničí, je HND nižší než HDP.",
+        },
         {
           type: "paragraph",
           text: "V ČR je HND dlouhodobě nižší než HDP, protože saldo prvotních důchodů se zahraničím je záporné.",
@@ -141,7 +164,7 @@ export const narodniUcty: Topic = {
         { type: "formula", formulaId: "deflator" },
         {
           type: "paragraph",
-          text: "Deflátor 120 znamená, že cenová hladina je o 20 % vyšší než v základním roce. Není to totéž jako 20% inflace.",
+          text: "Když ceny rostou, nominální HDP roste, i kdyby se vyrábělo stejně. Reálný HDP proto drží ceny na úrovni základního roku. Deflátor 120 znamená, že cenová hladina je o 20 % vyšší než v základním roce; není to totéž jako 20% inflace.",
         },
         { type: "formula", formulaId: "real-gdp" },
         {
@@ -174,7 +197,7 @@ export const narodniUcty: Topic = {
       blocks: [
         {
           type: "paragraph",
-          text: "Výdajová, výrobní a důchodová metoda musí při správných datech dát stejný HDP. Liší se jen pohledem na tok.",
+          text: "Výdajová, výrobní a důchodová metoda musí při správných datech dát stejný HDP. Je to stejný tok, jen se na něj díváš z jiné strany: výdajová z pohledu kupujícího, výrobní z pohledu výrobce a důchodová z pohledu příjemců důchodů.",
         },
         { type: "heading", text: "Výdajová metoda" },
         { type: "formula", formulaId: "gdp-expenditure" },
@@ -236,6 +259,10 @@ export const narodniUcty: Topic = {
         { type: "formula", formulaId: "identity-savings" },
         {
           type: "paragraph",
+          text: "Levá strana říká, kam plynou investice a čistý export. Pravá strana říká, kdo je financuje ze svých úspor. V uzavřené ekonomice bez vlády by platilo jednoduše $I = S$.",
+        },
+        {
+          type: "paragraph",
           text: "Identita je vždy platná, protože plyne z definic. Není to podmínka rovnováhy jako v modelu 45°.",
         },
         { type: "formula", formulaId: "gdp-identity" },
@@ -245,15 +272,15 @@ export const narodniUcty: Topic = {
           type: "example",
           title: "Vzorový test Q5 – HDP, ČDP a G",
           prompt:
-            "C = 2300, I_B = 850, NX = −70, mzdy 2600, renty 650, čisté úroky 200, zisky 300, odpisy 120, nepřímé daně 80. Vypočítej HDP, ČDP a G.",
+            "$C = 2300$, $I_B = 850$, $NX = -70$, mzdy 2600, renty 650, čisté úroky 200, zisky 300, odpisy 120, nepřímé daně 80. Vypočítej HDP, ČDP a G.",
           steps: [
             {
               label: "HDP důchodovou metodou",
-              text: "$HDP = 2600 + 650 + 200 + 300 + 120 + 80 = 3950$.",
+              text: "$\\text{HDP} = 2600 + 650 + 200 + 300 + 120 + 80 = 3950$.",
             },
             {
               label: "ČDP",
-              text: "$\text{ČDP} = 3950 - 120 = 3830$.",
+              text: "$\\text{ČDP} = 3950 - 120 = 3830$.",
             },
             {
               label: "Vládní nákupy",

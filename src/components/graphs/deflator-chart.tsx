@@ -36,7 +36,7 @@ export function DeflatorChart({ figure }: { figure?: string }) {
       id="deflator-chart"
       figure={figure}
       title="Nominální a reálný HDP, deflátor"
-      description="Data ze vzorového testu Q2. Nominální HDP roste i kvůli cenám; deflátor ukazuje, jak velká část růstu je cenová."
+      description="Data ze vzorového testu Q2. Sloupce ukazují nominální a reálný HDP, čára vpravo deflátor. Nominální HDP roste i kvůli cenám; deflátor ukazuje, jak velká část růstu je cenová."
       checklist={[
         "Označ osu let a osu hodnoty.",
         "Rozliš sloupce nominálního a reálného HDP.",
@@ -48,8 +48,8 @@ export function DeflatorChart({ figure }: { figure?: string }) {
     >
       <ChartLegend
         items={[
-          { label: "nominální HDP", color: "#c7d8e4" },
-          { label: "reálný HDP", color: "#b9d0c5" },
+          { label: "nominální HDP", color: "#c7d8e4", kind: "bar" },
+          { label: "reálný HDP", color: "#b9d0c5", kind: "bar" },
           { label: "deflátor", color: CHART.ink },
         ]}
       />

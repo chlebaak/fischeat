@@ -9,7 +9,7 @@ export const adAs: Topic = {
   intro:
     "Model, ve kterém už cena není fixní. AD a AS vysvětlují krátkodobé výkyvy produktu i dlouhodobý návrat k potenciálu.",
   takeaways: [
-    "AD je klesající kvůli úrokovému, bohatstevnímu a zahraničnímu efektu.",
+    "AD je klesající kvůli úrokovému efektu, efektu bohatství a zahraničnímu efektu.",
     "SAS je krátkodobě rostoucí, LAS je vertikální na úrovni potenciálního produktu.",
     "Poptávkový šok mění hlavně produkt, nabídkový šok může způsobit stagflaci.",
   ],
@@ -25,6 +25,10 @@ export const adAs: Topic = {
         {
           type: "paragraph",
           text: "Model 45° předpokládal pevnou cenovou hladinu. Model AD–AS tento předpoklad opouští: ceny se mění, ekonomika může být v krátkodobé i dlouhodobé rovnováze a můžeme zkoumat inflaci i produkt současně.",
+        },
+        {
+          type: "paragraph",
+          text: "Základní otázka modelu zní: **co se stane s produktem a cenovou hladinou**, když se změní poptávka nebo nabídka? Odpověď závisí na tom, zda se díváš na krátké, nebo dlouhé období.",
         },
         {
           type: "paragraph",
@@ -44,7 +48,7 @@ export const adAs: Topic = {
       blocks: [
         {
           type: "paragraph",
-          text: "Agregátní poptávka vyjadřuje množství statků a služeb, které chtějí spotřebitelé, firmy, vláda a zahraniční zákazníci koupit při různých cenových hladinách.",
+          text: "Agregátní poptávka vyjadřuje množství statků a služeb, které chtějí spotřebitelé, firmy, vláda a zahraniční zákazníci koupit při různých cenových hladinách. Není to poptávka po jednom statku: je to součet všech složek výdajů v ekonomice.",
         },
         { type: "formula", formulaId: "ad" },
         {
@@ -96,7 +100,7 @@ export const adAs: Topic = {
         },
         {
           type: "paragraph",
-          text: "**Dlouhodobá agregátní nabídka LAS** je vertikální na úrovni $Y^*$. V dlouhém období se mzdy přizpůsobí cenám a produkt se vrací k potenciálu.",
+          text: "**Dlouhodobá agregátní nabídka LAS** je vertikální na úrovni $Y^*$. V dlouhém období se mzdy přizpůsobí cenám a produkt se vrací k potenciálu. Proto se v dlouhém období mění hlavně cenová hladina, ne produkt.",
         },
         {
           type: "table",
@@ -120,7 +124,11 @@ export const adAs: Topic = {
       blocks: [
         {
           type: "paragraph",
-          text: "Krátkodobá rovnováha je průsečík AD a SAS. Dlouhodobá rovnováha leží na LAS v $Y^*$. Pokud se ekonomika odchýlí, mzdy a ceny se postupně přizpůsobí a SAS se posune tak, aby se produkt vrátil k potenciálu.",
+          text: "Krátkodobá rovnováha (KO) je průsečík AD a SAS. Dlouhodobá rovnováha (DO) leží na LAS v $Y^*$. Pokud se ekonomika odchýlí, mzdy a ceny se postupně přizpůsobí a SAS se posune tak, aby se produkt vrátil k potenciálu.",
+        },
+        {
+          type: "paragraph",
+          text: "U poptávkového šoku se posouvá **AD**. U nabídkového šoku se posouvá **SAS**. V dlouhém období se SAS přizpůsobuje tak, aby procházela bodem $Y^*$ a novou cenovou hladinou.",
         },
         {
           type: "example",
@@ -199,7 +207,7 @@ export const adAs: Topic = {
         {
           type: "list",
           items: [
-            "AD klesá díky úrokovému, bohatstevnímu a zahraničnímu efektu.",
+            "AD klesá díky úrokovému efektu, efektu bohatství a zahraničnímu efektu.",
             "SAS je krátkodobě rostoucí, LAS vertikální na $Y^*$.",
             "Poptávkový šok: Y a P se pohybují stejným směrem. Nabídkový šok: Y a P opačným směrem.",
             "Stagflace = pokles Y + růst P.",

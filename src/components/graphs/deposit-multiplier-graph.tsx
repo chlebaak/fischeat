@@ -110,8 +110,8 @@ export function DepositMultiplierGraph({ figure }: { figure?: string }) {
     >
       <ChartLegend
         items={[
-          { label: "nové vklady v kole", color: "#b9d0c5" },
-          { label: "kumulované vklady", color: CHART.accent },
+          { label: "nové vklady v kole", color: "#b9d0c5", kind: "bar" },
+          { label: "kumulované vklady", color: CHART.accent, kind: "bar" },
         ]}
       />
       <ClientOnly fallback={<div style={{ height: 320 }} />}>

@@ -45,7 +45,7 @@ export const penize: Topic = {
         },
         {
           type: "paragraph",
-          text: "Nabídka peněz je stavová veličina. Peněžní agregáty se řadí podle likvidity:",
+          text: "Nabídka peněz je stavová veličina: měří množství peněz k určitému okamžiku. Peněžní agregáty se řadí podle likvidity, tedy podle toho, jak rychle a snadno se dají použít k platbě:",
         },
         { type: "formula", formulaId: "m1" },
         { type: "formula", formulaId: "m2" },
@@ -63,7 +63,7 @@ export const penize: Topic = {
           type: "callout",
           variant: "warning",
           title: "Měnová báze není M1",
-          text: "Měnová báze $MB$ obsahuje oběživo a rezervy bank. Rezervy bank nejsou součástí peněžní zásoby M1, protože slouží jen pro transakce mezi bankami a centrální bankou.",
+          text: "Měnová báze $MB$ obsahuje oběživo a rezervy bank. Rezervy bank nejsou součástí peněžní zásoby M1, protože slouží jen pro transakce mezi bankami a centrální bankou. M1 jsou peníze, které drží veřejnost; MB jsou peníze, které vytvořila centrální banka.",
         },
       ],
     },
@@ -115,7 +115,7 @@ export const penize: Topic = {
       blocks: [
         {
           type: "paragraph",
-          text: "Když centrální banka nakoupí cenné papíry od komerční banky, zvýší tím rezervy bank a měnovou bázi. Banky drží jen část vkladů jako rezervy a zbytek půjčují. Úvěry se vracejí do bank jako nové vklady a proces se opakuje.",
+          text: "Když centrální banka nakoupí cenné papíry od komerční banky, zvýší tím rezervy bank a měnovou bázi. Banky drží jen část vkladů jako rezervy a zbytek půjčují. Úvěry se vracejí do bank jako nové vklady a proces se opakuje. Banky tedy nevytvářejí peníze z ničeho: vytvářejí depozita tím, že půjčují část existujících vkladů.",
         },
         { type: "formula", formulaId: "mb" },
         { type: "formula", formulaId: "deposit-multiplier" },
@@ -139,11 +139,11 @@ export const penize: Topic = {
             },
             {
               label: "Povinné rezervy",
-              text: "$\\Delta PMR = 0{,}06 \\times 333{,}33 = 20$ mil. Kč, tedy stejně jako počáteční impuls.",
+              text: "Změna povinných rezerv je $0{,}06 \\times 333{,}33 = 20$ mil. Kč, tedy stejně jako počáteční impuls.",
             },
           ],
           answer:
-            "ΔMB = 20 mil. Kč; ΔM1 ≈ 333,33 mil. Kč; ΔPMR = 20 mil. Kč; ΔD ≈ 333,33 mil. Kč.",
+            "ΔMB = 20 mil. Kč; ΔM1 ≈ 333,33 mil. Kč; Δ povinných rezerv = 20 mil. Kč; ΔD ≈ 333,33 mil. Kč.",
         },
         { type: "graphLink", graphId: "deposit-multiplier" },
         {
@@ -207,6 +207,10 @@ export const penize: Topic = {
           ],
         },
         { type: "formula", formulaId: "fisher" },
+        {
+          type: "paragraph",
+          text: "Fisher říká, že nominální úrok se skládá z reálného výnosu a očekávané inflace. Když lidé čekají vyšší inflaci, chtějí vyšší nominální úrok, aby jim reálný výnos nezmizel.",
+        },
         {
           type: "callout",
           variant: "note",

@@ -71,6 +71,26 @@ export function TopicArticle({ topic }: { topic: Topic }) {
           ) : null}
         </div>
 
+        {topic.sections.length > 1 ? (
+          <details className="mt-6 border-y border-line py-3">
+            <summary>Obsah kapitoly</summary>
+            <ol className="mt-3 grid gap-x-6 gap-y-1 font-sans text-sm sm:grid-cols-2">
+              {topic.sections.map((section, index) => (
+                <li key={section.id} className="flex gap-2">
+                  <span className="font-mono text-[11px] text-muted">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <a
+                    href={`#${section.id}`}
+                    className="text-muted transition-colors hover:text-accent"
+                  >
+                    {section.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </details>
+        ) : null}
       </header>
 
       <article className="container-prose prose-makro pb-10 pt-4">
@@ -89,7 +109,7 @@ export function TopicArticle({ topic }: { topic: Topic }) {
           <div>
             <p className="font-sans text-xs font-medium text-muted">Vzorce k tématu</p>
             <ul className="mt-2 space-y-1.5 font-sans text-sm">
-              {topicFormulas.slice(0, 5).map((formula) => (
+              {topicFormulas.slice(0, 6).map((formula) => (
                 <li key={formula.id}>
                   <Link
                     href={`/vzorce#${formula.id}`}
@@ -112,7 +132,7 @@ export function TopicArticle({ topic }: { topic: Topic }) {
               {topicGraphs.map((graph) => (
                 <li key={graph.id}>
                   <Link
-                    href={`/grafy#${graph.id}`}
+                    href={`/grafy/${graph.id}`}
                     className="link-underline text-accent"
                   >
                     {graph.title}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { formulaChapterTitle, formulasByTopic } from "@/content/formulas";
 import { topics } from "@/content/topics";
 import { FormulaCard } from "@/components/formula-card";
+import { Formula } from "@/components/formula";
 import { PrintButton } from "@/components/print-button";
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 export default function VzorcePage() {
   return (
     <div className="container-page">
-      <header className="container-prose pb-10 pt-16 sm:pt-24">
+      <header className="mx-auto max-w-3xl pb-10 pt-16 sm:pt-24">
         <p className="font-sans text-sm text-muted">Vzorce · 1. test</p>
         <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
           <h1 className="text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.04em] sm:text-[3.5rem]">
@@ -27,6 +28,53 @@ export default function VzorcePage() {
           proměnné a stručné „kdy použít“. Vzorce označené „v testu“ se objevily
           ve vzorovém testu nebo jsou potřeba k jeho výpočtům.
         </p>
+
+        <details className="mt-7 border-y border-line py-3">
+          <summary>Použité symboly</summary>
+          <dl className="mt-3 grid gap-x-8 gap-y-2 font-sans text-sm sm:grid-cols-2">
+            {[
+              ["Y", "produkt, respektive HDP"],
+              ["Y_N", "nominální HDP"],
+              ["Y_R", "reálný HDP"],
+              ["YD", "disponibilní důchod domácností"],
+              ["C", "spotřeba domácností"],
+              ["I", "skutečné, respektive agregátní investice"],
+              ["I_B", "hrubé soukromé investice"],
+              ["I_P", "plánované investice v modelu 45°"],
+              ["G", "vládní nákupy statků a služeb"],
+              ["NX", "čistý export (X − M)"],
+              ["T_A", "autonomní daně"],
+              ["t", "sazba důchodové daně"],
+              ["TR", "transferové platby"],
+              ["NT", "čisté daně (daně − transfery)"],
+              ["BS", "saldo státního rozpočtu"],
+              ["INT", "čisté úroky v důchodové metodě"],
+              ["RENT", "renty v důchodové metodě"],
+              ["A", "odpisy, znehodnocení kapitálu"],
+              ["A_0", "autonomní výdaje v modelu 45°"],
+              ["MS", "nabídka peněz"],
+              ["MD", "poptávka po penězích"],
+              ["i", "nominální úroková míra"],
+              ["Y^*", "potenciální produkt"],
+              ["DEF", "deflátor HDP"],
+              ["OB", "oběživo, hotovost mimo banky"],
+              ["D", "vklady na požádání"],
+              ["R", "rezervy bank"],
+              ["PMR", "povinná míra rezerv jako desetinné číslo"],
+            ].map(([symbol, meaning]) => (
+              <div key={symbol} className="flex items-baseline gap-3">
+                <dt className="w-16 shrink-0 font-mono text-xs text-accent">
+                  <Formula latex={symbol} display={false} />
+                </dt>
+                <dd className="text-muted">{meaning}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-3 font-sans text-xs leading-relaxed text-muted">
+            Značení se v zadání může mírně lišit. Rozhoduje vždy význam veličiny,
+            ne přesné písmeno.
+          </p>
+        </details>
       </header>
 
       <nav

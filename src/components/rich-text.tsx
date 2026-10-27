@@ -1,34 +1,51 @@
 import katex from "katex";
 
-const tokenPattern = /(\*\*[^*]+\*\*|\$[^$]+\$)/g;
+function renderMathParts(text: string, keyPrefix: string) {
+  return text
+    .split(/(\$[^$]+\$)/g)
+    .filter(Boolean)
+    .map((part, index) => {
+      if (part.startsWith("$") && part.endsWith("$")) {
+        const html = katex.renderToString(part.slice(1, -1), {
+          displayMode: false,
+          throwOnError: false,
+          strict: false,
+          output: "htmlAndMathml",
+        });
 
-function InlineMath({ latex }: { latex: string }) {
-  const html = katex.renderToString(latex, {
-    displayMode: false,
-    throwOnError: false,
-    strict: false,
-    output: "htmlAndMathml",
-  });
+        return (
+          <span
+            key={`${keyPrefix}-math-${index}`}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        );
+      }
 
-  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+      return <span key={`${keyPrefix}-text-${index}`}>{part}</span>;
+    });
 }
 
 export function RichText({ text }: { text: string }) {
-  const parts = text.split(tokenPattern).filter(Boolean);
-
   return (
     <>
-      {parts.map((part, index) => {
-        if (part.startsWith("**") && part.endsWith("**")) {
-          return <strong key={index}>{part.slice(2, -2)}</strong>;
-        }
+      {text
+        .split(/(\*\*[\s\S]+?\*\*)/g)
+        .filter(Boolean)
+        .map((part, index) => {
+          if (part.startsWith("**") && part.endsWith("**")) {
+            return (
+              <strong key={`bold-${index}`}>
+                {renderMathParts(part.slice(2, -2), `bold-${index}`)}
+              </strong>
+            );
+          }
 
-        if (part.startsWith("$") && part.endsWith("$")) {
-          return <InlineMath key={index} latex={part.slice(1, -1)} />;
-        }
-
-        return <span key={index}>{part}</span>;
-      })}
+          return (
+            <span key={`plain-${index}`}>
+              {renderMathParts(part, `plain-${index}`)}
+            </span>
+          );
+        })}
     </>
   );
 }

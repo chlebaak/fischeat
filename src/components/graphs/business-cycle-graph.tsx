@@ -11,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { formatNumber } from "@/lib/format";
+import { formatDecimal, formatNumber } from "@/lib/format";
 import { CHART, axisProps, chartMargin } from "./chart-theme";
 import { ChartLegend } from "./chart-legend";
 import { ClientOnly } from "./client-only";
@@ -73,7 +73,7 @@ export function BusinessCycleGraph({ figure }: { figure?: string }) {
         String(t),
         formatNumber(actual),
         formatNumber(POTENTIAL),
-        `${(((actual - POTENTIAL) / POTENTIAL) * 100).toFixed(1)} %`,
+        `${formatDecimal(((actual - POTENTIAL) / POTENTIAL) * 100, 1)} %`,
       ];
     }),
   };
@@ -82,13 +82,13 @@ export function BusinessCycleGraph({ figure }: { figure?: string }) {
     <GraphShell
       id="business-cycle"
       figure={figure}
-      title="Hospodářský cyklus a output gap"
+      title="Hospodářský cyklus a produkční mezera"
       description="Skutečný produkt kolísá kolem potenciálu. Produkční mezera měří, jak daleko je ekonomika od dlouhodobě udržitelného výkonu."
       checklist={[
         "Označ čas a reálný produkt.",
         "Nakresli potenciální produkt jako dlouhodobý trend.",
         "Vyznač fáze: dno, expanze, vrchol, recese.",
-        "Output gap spočítej jako (Y − Y*) / Y* × 100.",
+        "Produkční mezeru spočítej jako $(Y - Y^*) / Y^* \\times 100$.",
       ]}
       table={table}
       note="Kladná mezera znamená, že ekonomika je nad potenciálem a vznikají inflační tlaky. Záporná mezera znamená nevyužité kapacity."
@@ -127,7 +127,7 @@ export function BusinessCycleGraph({ figure }: { figure?: string }) {
             </span>
             <span className={model.gap >= 0 ? "text-accent" : "text-danger"}>
               mezera {model.gap >= 0 ? "+" : ""}
-              {model.gap.toFixed(1)} %
+              {formatDecimal(model.gap, 1)} %
             </span>
             <span className="text-ink">fáze: {model.phase}</span>
           </div>

@@ -14,12 +14,15 @@ export function formatOneDecimal(value: number): string {
   return oneDecimalFormatter.format(value);
 }
 
-export function formatPercent(value: number, digits = 1): string {
-  const formatter = new Intl.NumberFormat("cs-CZ", {
-    maximumFractionDigits: digits,
+export function formatDecimal(value: number, digits = 2): string {
+  return new Intl.NumberFormat("cs-CZ", {
     minimumFractionDigits: digits,
-  });
-  return `${formatter.format(value)} %`;
+    maximumFractionDigits: digits,
+  }).format(value);
+}
+
+export function formatPercent(value: number, digits = 1): string {
+  return `${formatDecimal(value, digits)} %`;
 }
 
 export function formatSigned(value: number, digits = 1): string {

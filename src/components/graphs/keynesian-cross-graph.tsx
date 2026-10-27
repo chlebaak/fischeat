@@ -11,7 +11,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { formatNumber } from "@/lib/format";
+import { formatDecimal, formatNumber } from "@/lib/format";
 import { CHART, axisProps, chartMargin } from "./chart-theme";
 import { ChartLegend } from "./chart-legend";
 import { ClientOnly } from "./client-only";
@@ -102,7 +102,7 @@ export function KeynesianCrossGraph({ figure }: { figure?: string }) {
       checklist={[
         "Označ osu Y a osu AE.",
         "Nakresli přímku 45°.",
-        "Nakresli AE = A + c′Y.",
+        "Nakresli $AE = A_0 + c'Y$.",
         "Vyznač rovnováhu a nezapomeň na posun versus změnu sklonu.",
       ]}
       table={table}
@@ -126,7 +126,7 @@ export function KeynesianCrossGraph({ figure }: { figure?: string }) {
             max={0.95}
             step={0.01}
             onChange={setC}
-            format={(value) => value.toFixed(2)}
+            format={(value) => formatDecimal(value, 2)}
           />
           {sector >= 3 ? (
             <ControlSlider
@@ -146,7 +146,7 @@ export function KeynesianCrossGraph({ figure }: { figure?: string }) {
               max={0.3}
               step={0.01}
               onChange={setT}
-              format={(value) => value.toFixed(2)}
+              format={(value) => formatDecimal(value, 2)}
             />
           ) : null}
           {sector === 4 ? (
@@ -157,12 +157,12 @@ export function KeynesianCrossGraph({ figure }: { figure?: string }) {
               max={0.3}
               step={0.01}
               onChange={setM}
-              format={(value) => value.toFixed(2)}
+              format={(value) => formatDecimal(value, 2)}
             />
           ) : null}
           <div className="flex flex-wrap gap-x-6 gap-y-1 border-t border-line pt-3 font-sans text-xs text-muted">
-            <span>Autonomní výdaje A = {formatNumber(model.autonomous)}</span>
-            <span>sklon AE = {model.slope.toFixed(2)}</span>
+            <span>Autonomní výdaje A₀ = {formatNumber(model.autonomous)}</span>
+            <span>sklon AE = {formatDecimal(model.slope, 2)}</span>
             <span className="text-ink">
               Rovnováha Y ={" "}
               {Number.isFinite(model.equilibrium)

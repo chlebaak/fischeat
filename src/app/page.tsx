@@ -18,7 +18,7 @@ const sections = [
     href: "/grafy",
     number: "03",
     title: "Grafy",
-    text: "Interaktivní modely i čisté zkouškové obrázky. Keynesiánský kříž, peníze, AD–AS, cyklus.",
+    text: "Každý graf má vlastní stránku: interaktivní ukázku, návod, jak ho nakreslit, a chyby, na které si dát pozor.",
   },
   {
     href: "/test",

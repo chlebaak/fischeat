@@ -368,7 +368,7 @@ export const sampleTest1: TestVersion = {
             { id: "gdp", label: "HDP", answer: 3950, tolerance: 0.001, placeholder: "3950" },
           ],
           solution: [
-            "Důchodová metoda: $HDP = 2600 + 650 + 200 + 300 + 120 + 80 = 3950$.",
+            "Důchodová metoda: $\\text{HDP} = 2600 + 650 + 200 + 300 + 120 + 80 = 3950$.",
           ],
         },
         {
@@ -379,7 +379,7 @@ export const sampleTest1: TestVersion = {
           fields: [
             { id: "cdp", label: "ČDP", answer: 3830, tolerance: 0.001, placeholder: "3830" },
           ],
-          solution: ["$\text{ČDP} = \text{HDP} - \text{odpisy} = 3950 - 120 = 3830$."],
+          solution: ["$\\text{ČDP} = \\text{HDP} - \\text{odpisy} = 3950 - 120 = 3830$."],
         },
         {
           id: "q5c",
