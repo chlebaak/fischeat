@@ -1,7 +1,8 @@
 # fischeat
 
-Studijní rozcestník pro více předmětů. Aktuálně obsahuje **Makro 204**; další
-předměty lze přidat jako samostatné subject bundle.
+Studijní rozcestník pro předměty oboru **Aplikovaná informatika** na **VŠE FIS**.
+Aktuálně obsahuje **Makro 204**; další předměty lze přidat jako samostatné
+subject bundle.
 
 ## Co web obsahuje
 

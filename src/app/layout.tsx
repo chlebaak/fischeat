@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s · fischeat",
   },
   description:
-    "Výpisky, vzorce, grafy a procvičování pro jednotlivé předměty. Vyber si předmět a uč se bez chaosu.",
+    "Studijní materiály z VŠE FIS pro předměty oboru Aplikovaná informatika. Výpisky, vzorce, grafy a procvičování na jednom místě.",
 };
 
 export const viewport: Viewport = {

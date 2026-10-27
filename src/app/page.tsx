@@ -5,7 +5,7 @@ import { subjectSummaries } from "@/subjects/summaries";
 export const metadata: Metadata = {
   title: { absolute: "fischeat — studijní materiály" },
   description:
-    "Výpisky, vzorce, grafy a procvičování pro jednotlivé předměty. Vyber si předmět a uč se bez chaosu.",
+    "Studijní materiály z VŠE FIS pro předměty oboru Aplikovaná informatika. Výpisky, vzorce, grafy a procvičování na jednom místě.",
 };
 
 export default function HomePage() {
@@ -14,7 +14,7 @@ export default function HomePage() {
       <section className="grid gap-10 pb-16 pt-16 sm:pb-24 sm:pt-24 lg:grid-cols-[1fr_20rem] lg:gap-20">
         <div className="max-w-3xl">
           <p className="font-sans text-sm text-muted">
-            fischeat · studijní materiály
+            fischeat · VŠE FIS
           </p>
           <h1 className="mt-4 text-[3rem] font-semibold leading-[0.98] tracking-[-0.05em] sm:text-[4.8rem]">
             Uč se
@@ -22,8 +22,8 @@ export default function HomePage() {
             bez chaosu.
           </h1>
           <p className="mt-6 max-w-xl font-serif text-[1.1rem] leading-[1.7] text-ink/80 sm:text-[1.2rem]">
-            Výpisky, vzorce, grafy a procvičování na jednom místě. Vyber si
-            předmět a pokračuj tam, kde jsi skončil.
+            Studijní materiály z VŠE FIS pro předměty oboru Aplikovaná
+            informatika. Výpisky, vzorce, grafy a procvičování na jednom místě.
           </p>
         </div>
 
@@ -56,7 +56,9 @@ export default function HomePage() {
           <h2 id="predmety" className="font-sans text-2xl font-semibold tracking-[-0.03em]">
             Předměty
           </h2>
-          <p className="font-sans text-xs text-muted">Vyber si, co zrovna řešíš.</p>
+          <p className="font-sans text-xs text-muted">
+            Předměty oboru Aplikovaná informatika na VŠE FIS.
+          </p>
         </div>
 
         <div className="mt-8 grid gap-x-10 gap-y-10 sm:grid-cols-2">
@@ -112,9 +114,9 @@ export default function HomePage() {
 
       <section className="border-t border-line py-10">
         <p className="max-w-2xl font-serif text-[1.02rem] leading-[1.75] text-ink/80">
-          fischeat je místo pro výpisky, které dávají smysl. Žádné hledání
-          materiálů po discích a chaotických PDF. Vybereš předmět a jdeš rovnou
-          na věc.
+          fischeat je místo pro výpisky, které dávají smysl. Materiály z VŠE FIS
+          pro obor Aplikovaná informatika. Žádné hledání materiálů po discích a
+          chaotických PDF. Vybereš předmět a jdeš rovnou na věc.
         </p>
       </section>
     </div>

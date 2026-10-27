@@ -6,10 +6,11 @@ export function SiteFooter() {
       <div className="container-page flex flex-col gap-4 py-8 text-sm text-muted sm:flex-row sm:items-baseline sm:justify-between">
         <p>
           <span className="font-medium text-ink">fischeat</span> · studijní
-          materiály
+          materiály VŠE FIS
         </p>
         <p className="max-w-xl text-xs leading-relaxed">
-          Jedno místo pro výpisky, vzorce, grafy a procvičování.{" "}
+          Materiály pro obor Aplikovaná informatika. Jedno místo pro výpisky,
+          vzorce, grafy a procvičování.{" "}
           <Link href="/" className="link-underline">
             Předměty
           </Link>
