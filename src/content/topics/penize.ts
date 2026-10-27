@@ -145,7 +145,7 @@ export const penize: Topic = {
           answer:
             "ΔMB = 20 mil. Kč; ΔM1 ≈ 333,33 mil. Kč; Δ povinných rezerv = 20 mil. Kč; ΔD ≈ 333,33 mil. Kč.",
         },
-        { type: "graphLink", graphId: "deposit-multiplier" },
+        { type: "graph", graphId: "deposit-multiplier", figure: "Obr. 3.1" },
         {
           type: "callout",
           variant: "note",
@@ -217,7 +217,7 @@ export const penize: Topic = {
           title: "Cena obligace a úrok",
           text: "Cena dluhopisu a úroková míra se pohybují protisměrně. Když cena dluhopisu roste, výnos z něj klesá.",
         },
-        { type: "graphLink", graphId: "money-market" },
+        { type: "graph", graphId: "money-market", figure: "Obr. 3.2" },
       ],
     },
     {

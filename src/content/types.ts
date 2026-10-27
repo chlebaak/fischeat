@@ -40,6 +40,7 @@ export type ContentBlock =
       steps: { label: string; text: string }[];
       answer: string;
     }
+  | { type: "graph"; graphId: GraphId; figure?: string }
   | { type: "graphLink"; graphId: GraphId; label?: string }
   | {
       type: "terms";

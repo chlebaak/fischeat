@@ -145,6 +145,7 @@ export const narodniUcty: Topic = {
             ["ČND", "HND po odečtení odpisů", "HND − odpisy"],
           ],
         },
+        { type: "formula", formulaId: "cnd" },
         {
           type: "callout",
           variant: "note",
@@ -167,6 +168,7 @@ export const narodniUcty: Topic = {
           text: "Když ceny rostou, nominální HDP roste, i kdyby se vyrábělo stejně. Reálný HDP proto drží ceny na úrovni základního roku. Deflátor 120 znamená, že cenová hladina je o 20 % vyšší než v základním roce; není to totéž jako 20% inflace.",
         },
         { type: "formula", formulaId: "real-gdp" },
+        { type: "formula", formulaId: "nominal-gdp" },
         {
           type: "example",
           title: "Vzorový test Q2 – dopočítej tabulku",
@@ -188,7 +190,7 @@ export const narodniUcty: Topic = {
           ],
           answer: "X1 = 1000, X2 ≈ 136,36, X3 = 1470.",
         },
-        { type: "graphLink", graphId: "deflator-chart" },
+        { type: "graph", graphId: "deflator-chart", figure: "Obr. 1.2" },
       ],
     },
     {
@@ -241,6 +243,7 @@ export const narodniUcty: Topic = {
           title: "Dvojí započtení",
           text: "Nezapočítej meziprodukt dvakrát. U výdajové metody se do HDP dostane jen finální statek, u výrobní jen přidaná hodnota.",
         },
+        { type: "graph", graphId: "gdp-methods", figure: "Obr. 1.1" },
       ],
     },
     {

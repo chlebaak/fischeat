@@ -9,6 +9,18 @@ const formulaIds = new Set(formulas.map((formula) => formula.id));
 const graphIds = new Set(graphs.map((graph) => graph.id));
 const questionIds = new Set(sampleTest1.questions.map((question) => question.id));
 
+const embeddedFormulaIds = new Set<string>();
+const embeddedGraphIds = new Set<string>();
+
+for (const topic of topics) {
+  for (const section of topic.sections) {
+    for (const block of section.blocks) {
+      if (block.type === "formula") embeddedFormulaIds.add(block.formulaId);
+      if (block.type === "graph") embeddedGraphIds.add(block.graphId);
+    }
+  }
+}
+
 describe("content integrity", () => {
   it("has unique ids", () => {
     expect(topicIds.size).toBe(topics.length);
@@ -28,6 +40,36 @@ describe("content integrity", () => {
       for (const questionId of topic.testQuestionIds) {
         expect(questionIds.has(questionId), `${topic.id} -> ${questionId}`).toBe(true);
       }
+    }
+  });
+
+  it("keeps embedded formulas and graphs in topics valid", () => {
+    for (const topic of topics) {
+      for (const section of topic.sections) {
+        for (const block of section.blocks) {
+          if (block.type === "formula") {
+            expect(
+              formulaIds.has(block.formulaId),
+              `${topic.id}/${section.id} -> ${block.formulaId}`,
+            ).toBe(true);
+          }
+          if (block.type === "graph" || block.type === "graphLink") {
+            expect(
+              graphIds.has(block.graphId),
+              `${topic.id}/${section.id} -> ${block.graphId}`,
+            ).toBe(true);
+          }
+        }
+      }
+    }
+  });
+
+  it("embeds every formula and every graph in the explanation", () => {
+    for (const formula of formulas) {
+      expect(embeddedFormulaIds.has(formula.id), `missing formula ${formula.id}`).toBe(true);
+    }
+    for (const graph of graphs) {
+      expect(embeddedGraphIds.has(graph.id), `missing graph ${graph.id}`).toBe(true);
     }
   });
 

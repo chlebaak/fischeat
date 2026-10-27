@@ -5,7 +5,8 @@ Minimalistický studijní web k **1. průběžnému testu z Makroekonomie 3MI 20
 Obsahuje:
 
 - výklad v pěti tématech (národní účty, model produkt–výdaje, peníze, AD–AS, hospodářský cyklus),
-- vzorce rozdělené po tématech s proměnnými, přehledem symbolů a vysvětlením „kdy použít“,
+- vzorce a interaktivní grafy přímo v místě, kde se látka vysvětluje,
+- přehlednou stránku vzorců s proměnnými, přehledem symbolů a vysvětlením „kdy použít“,
 - přehledný rozcestník grafů a samostatnou stránku pro každý graf,
 - interaktivní grafy s přepínačem do zkouškového režimu, návodem na kreslení a seznamem častých chyb,
 - interaktivní vzorový test na 25 bodů s automatickým vyhodnocením výpočtů a sebehodnocením grafů.

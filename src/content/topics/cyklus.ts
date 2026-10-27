@@ -67,7 +67,6 @@ export const cyklus: Topic = {
             },
           ],
         },
-        { type: "graphLink", graphId: "business-cycle" },
       ],
     },
     {
@@ -94,6 +93,7 @@ export const cyklus: Topic = {
           title: "Y* není maximum",
           text: "Potenciální produkt není nejvyšší možný výkon za každou cenu. Je to výkon konzistentní s plnou zaměstnaností a stabilní inflací.",
         },
+        { type: "graph", graphId: "business-cycle", figure: "Obr. 5.1" },
       ],
     },
     {
@@ -147,6 +147,25 @@ export const cyklus: Topic = {
           variant: "note",
           title: "Importovaná inflace",
           text: "Když je domácí ekonomika na potenciálu, zahraniční poptávka už nezvýší produkt, ale promítne se do vyšších cen. Tomu se říká importovaná inflace.",
+        },
+      ],
+    },
+    {
+      id: "vypocty",
+      title: "Užitečné výpočty",
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Když pracuješ s časovými řadami, hodí se umět spočítat tempo růstu a inflaci. Míra nezaměstnanosti se používá jako doplněk k cyklu a k produkční mezeře.",
+        },
+        { type: "formula", formulaId: "growth-rate" },
+        { type: "formula", formulaId: "inflation-rate" },
+        { type: "formula", formulaId: "unemployment-rate" },
+        {
+          type: "callout",
+          variant: "note",
+          title: "Nezaměňuj procenta a procentní body",
+          text: "Růst z 20 % na 30 % je růst o 10 procentních bodů, ale o 50 procent. U změn hodnot, které jsou samy v procentech, proto rozlišuj, co je základ.",
         },
       ],
     },

@@ -31,6 +31,9 @@ test("navigation from home to a topic works", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: /Model produkt–výdaje/ }),
   ).toBeVisible();
+  await expect(page.locator("#consumption-savings")).toBeVisible();
+  await expect(page.locator("#keynesian-cross")).toBeVisible();
+  expect(await page.locator(".formula-card").count()).toBeGreaterThan(10);
 });
 
 test("formula and graph pages render rich content", async ({ page }) => {
@@ -76,7 +79,11 @@ test("mobile pages do not overflow horizontally", async ({ page }) => {
 
   for (const route of [
     "/",
+    "/vyklad/narodni-ucty",
     "/vyklad/model-vydaje",
+    "/vyklad/penize",
+    "/vyklad/ad-as",
+    "/vyklad/cyklus",
     "/vzorce",
     "/grafy",
     "/grafy/keynesian-cross",

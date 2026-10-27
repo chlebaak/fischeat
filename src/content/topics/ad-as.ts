@@ -174,7 +174,7 @@ export const adAs: Topic = {
           answer:
             "SAS doleva/nahoru, AD doprava. Cena roste; Y závisí na tom, který posun převáží.",
         },
-        { type: "graphLink", graphId: "adas" },
+        { type: "graph", graphId: "adas", figure: "Obr. 4.1" },
       ],
     },
     {

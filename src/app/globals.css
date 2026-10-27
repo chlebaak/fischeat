@@ -240,6 +240,16 @@
   padding: 1.15rem;
 }
 
+.prose-makro .graph-card {
+  font-family: var(--font-sans);
+}
+
+.prose-makro .graph-card h3 {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+}
+
 @media (min-width: 768px) {
   .graph-card {
     padding: 1.5rem;

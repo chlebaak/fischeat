@@ -118,7 +118,7 @@ export const modelVydaje: Topic = {
           title: "Q6 – tři situace v grafu",
           text: "Pokles mezního sklonu k úsporám znamená růst c, tedy strmější spotřební funkci. Negativní očekávání sníží autonomní spotřebu a posunou křivku dolů. Růst bohatství ji posune nahoru.",
         },
-        { type: "graphLink", graphId: "consumption-savings" },
+        { type: "graph", graphId: "consumption-savings", figure: "Obr. 2.1" },
       ],
     },
     {
@@ -133,6 +133,7 @@ export const modelVydaje: Topic = {
           type: "paragraph",
           text: "$Y = C + I_P$ a zároveň $I_P = S$. Skutečné investice se rovnají plánovaným jen tehdy, když jsou neplánované zásoby nulové.",
         },
+        { type: "formula", formulaId: "equilibrium-2" },
         {
           type: "paragraph",
           text: "V grafu je na ose x produkt $Y$ a na ose y plánované výdaje $AE$. Přímka 45° spojuje body, kde se produkt rovná výdajům. Rovnováha je průsečík této přímky s křivkou $AE$.",
@@ -163,7 +164,7 @@ export const modelVydaje: Topic = {
           ],
           answer: "Rovnovážný produkt je 5000, multiplikátor 10.",
         },
-        { type: "graphLink", graphId: "keynesian-cross" },
+        { type: "graph", graphId: "keynesian-cross", figure: "Obr. 2.2" },
       ],
     },
     {
@@ -176,6 +177,7 @@ export const modelVydaje: Topic = {
         },
         { type: "formula", formulaId: "yd-taxes" },
         { type: "formula", formulaId: "multiplier-3" },
+        { type: "formula", formulaId: "equilibrium-3" },
         {
           type: "paragraph",
           text: "Podmínka rovnováhy se dá zapsat i jako rovnost přítoků a úniků: $I_P + G = S + NT$. Multiplikátor je menší než ve dvousektorové ekonomice, protože část každé dodatečné koruny odejde na daních.",
@@ -268,6 +270,9 @@ export const modelVydaje: Topic = {
             ["m", "plošší/strmější", "vyšší sklon k importu"],
           ],
         },
+        { type: "formula", formulaId: "delta-g" },
+        { type: "formula", formulaId: "delta-ta" },
+        { type: "formula", formulaId: "delta-tr" },
         {
           type: "callout",
           variant: "note",

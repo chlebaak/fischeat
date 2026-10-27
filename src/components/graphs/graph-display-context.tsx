@@ -4,21 +4,25 @@ import { createContext, useContext, type ReactNode } from "react";
 
 type GraphDisplayConfig = {
   hideTitle: boolean;
+  compact: boolean;
 };
 
 const GraphDisplayContext = createContext<GraphDisplayConfig>({
   hideTitle: false,
+  compact: false,
 });
 
 export function GraphDisplayProvider({
-  hideTitle,
+  hideTitle = false,
+  compact = false,
   children,
 }: {
-  hideTitle: boolean;
+  hideTitle?: boolean;
+  compact?: boolean;
   children: ReactNode;
 }) {
   return (
-    <GraphDisplayContext.Provider value={{ hideTitle }}>
+    <GraphDisplayContext.Provider value={{ hideTitle, compact }}>
       {children}
     </GraphDisplayContext.Provider>
   );

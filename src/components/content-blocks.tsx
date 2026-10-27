@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ContentBlock } from "@/content/types";
 import { graphById } from "@/content/graphs";
+import { GraphDisplayProvider } from "./graphs/graph-display-context";
+import { GraphRenderer } from "./graphs/graph-renderer";
 import { FormulaCard } from "./formula-card";
 import { RichText } from "./rich-text";
 
@@ -137,6 +139,26 @@ export function ContentBlocks({ blocks }: { blocks: ContentBlock[] }) {
                   <RichText text={block.answer} />
                 </p>
               </aside>
+            );
+
+          case "graph":
+            return (
+              <div key={index} className="my-8 lg:-mx-24">
+                <GraphDisplayProvider compact>
+                  <GraphRenderer
+                    id={block.graphId}
+                    figure={block.figure}
+                  />
+                </GraphDisplayProvider>
+                <p className="mt-2 font-sans text-xs text-muted">
+                  <Link
+                    href={`/grafy/${block.graphId}`}
+                    className="link-underline text-accent"
+                  >
+                    Celý graf, návod a tabulka hodnot →
+                  </Link>
+                </p>
+              </div>
             );
 
           case "graphLink": {

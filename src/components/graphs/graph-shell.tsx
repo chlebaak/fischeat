@@ -35,13 +35,14 @@ export function GraphShell({
   readOnly?: boolean;
 }) {
   const [examMode, setExamMode] = useState(false);
-  const { hideTitle } = useGraphDisplay();
+  const { hideTitle, compact: contextCompact } = useGraphDisplay();
+  const isCompact = compact || contextCompact;
   const hasControls = Boolean(controls) && !readOnly;
 
   return (
     <figure
       id={id}
-      className={`graph-card scroll-mt-24 ${compact ? "p-4 sm:p-5" : ""}`}
+      className={`graph-card scroll-mt-24 ${isCompact ? "p-4 sm:p-5" : ""}`}
     >
       <figcaption>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -72,7 +73,7 @@ export function GraphShell({
           ) : null}
         </div>
 
-        {description && !compact ? (
+        {description && !isCompact ? (
           <p className="graph-caption mt-2 max-w-2xl">
             <RichText text={description} />
           </p>
@@ -96,13 +97,13 @@ export function GraphShell({
         <div className="graph-controls">{controls}</div>
       ) : null}
 
-      {note && !compact ? (
+      {note && !isCompact ? (
         <p className="mt-3 border-l-2 border-line pl-3 font-sans text-xs leading-relaxed text-muted">
           <RichText text={note} />
         </p>
       ) : null}
 
-      {checklist?.length && !compact ? (
+      {checklist?.length && !isCompact ? (
         <details className="mt-4 border-t border-line pt-3">
           <summary>Jak to nakreslit</summary>
           <ul className="mt-2 space-y-1 font-sans text-xs leading-relaxed text-muted">
@@ -119,7 +120,7 @@ export function GraphShell({
         </details>
       ) : null}
 
-      {table && !compact ? (
+      {table && !isCompact ? (
         <details className="mt-2 border-t border-line pt-3">
           <summary>Tabulka hodnot</summary>
           <div className="table-wrap mt-2">
