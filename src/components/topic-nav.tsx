@@ -13,7 +13,7 @@ export function TopicNav({
   return (
     <nav
       aria-label="Kapitoly výkladu"
-      className="no-print -mx-5 overflow-x-auto border-y border-line px-5 md:mx-0 md:px-0"
+      className="no-print -mx-5 overflow-x-auto px-5 pb-3 md:mx-0 md:px-0"
     >
       <ul className="flex min-w-max items-center gap-5 py-3 text-[13px] sm:gap-7 sm:text-sm">
         {topics.map((topic) => {
@@ -25,8 +25,8 @@ export function TopicNav({
                 aria-current={active ? "page" : undefined}
                 className={
                   active
-                    ? "font-medium text-ink"
-                    : "text-muted transition-colors hover:text-ink"
+                    ? "inline-block py-1 font-medium text-ink"
+                    : "inline-block py-1 text-muted transition-colors hover:text-ink"
                 }
               >
                 <span className="mr-1.5 font-mono text-[11px] text-muted">

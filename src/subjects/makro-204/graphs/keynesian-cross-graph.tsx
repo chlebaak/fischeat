@@ -160,7 +160,7 @@ export function KeynesianCrossGraph({ figure }: { figure?: string }) {
               format={(value) => formatDecimal(value, 2)}
             />
           ) : null}
-          <div className="flex flex-wrap gap-x-6 gap-y-1 border-t border-line pt-3 font-sans text-xs text-muted">
+          <div className="flex flex-wrap gap-x-6 gap-y-1 pt-2 font-sans text-xs text-muted">
             <span>Autonomní výdaje A₀ = {formatNumber(model.autonomous)}</span>
             <span>sklon AE = {formatDecimal(model.slope, 2)}</span>
             <span className="text-ink">

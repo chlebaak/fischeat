@@ -45,7 +45,7 @@ export default async function GrafyPage({ params }: PageProps) {
         <p className="font-sans text-sm text-muted">
           Grafy · {subject.meta.shortTitle}
         </p>
-        <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.04em] sm:text-[3.5rem]">
+        <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.045em] sm:text-[3.5rem]">
           Grafy
         </h1>
         <p className="mt-5 max-w-2xl font-serif text-[1.06rem] leading-[1.7] text-ink/80">
@@ -53,7 +53,7 @@ export default async function GrafyPage({ params }: PageProps) {
           sledovat, a nakonec si ho zkus nakreslit na papír bez nápovědy.
         </p>
 
-        <aside className="mt-8 border-y border-line py-5">
+        <aside className="mt-8 rounded-lg bg-surface px-5 py-5">
           <p className="font-sans text-xs font-medium text-muted">
             Jak číst graf
           </p>
@@ -81,14 +81,14 @@ export default async function GrafyPage({ params }: PageProps) {
           return (
             <section
               key={topic.id}
-              className="border-t border-line pt-8 [&+&]:mt-12"
+              className="[&+&]:mt-12"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
                   <p className="font-sans text-xs font-medium text-muted">
                     Téma {String(topic.number).padStart(2, "0")}
                   </p>
-                  <h2 className="mt-1 font-sans text-2xl font-semibold tracking-[-0.03em]">
+                  <h2 className="mt-1 font-sans text-2xl font-semibold tracking-[-0.035em]">
                     {topic.shortTitle}
                   </h2>
                 </div>
@@ -100,12 +100,12 @@ export default async function GrafyPage({ params }: PageProps) {
                 </Link>
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 space-y-1">
                 {topicGraphs.map((graph) => (
                   <Link
                     key={graph.id}
                     href={`${subjectPath}/grafy/${graph.id}`}
-                    className="group grid gap-x-4 gap-y-2 border-t border-line py-5 sm:grid-cols-[2.5rem_1fr_1.5rem]"
+                    className="group grid gap-x-4 gap-y-2 rounded-lg px-3 py-4 transition-colors hover:bg-surface sm:grid-cols-[2.5rem_1fr_1.5rem]"
                   >
                     <span className="font-mono text-xs text-muted">
                       {String(subject.graphs.indexOf(graph) + 1).padStart(2, "0")}
@@ -142,7 +142,7 @@ export default async function GrafyPage({ params }: PageProps) {
           );
         })}
 
-        <aside className="mt-12 border-t border-line pt-8">
+        <aside className="mt-12 pt-8">
           <p className="font-sans text-sm leading-relaxed text-muted">
             Grafy nejdou naučit jen pohledem. Vezmi papír, nakresli osy a zkus
             graf znovu bez nápovědy.{" "}

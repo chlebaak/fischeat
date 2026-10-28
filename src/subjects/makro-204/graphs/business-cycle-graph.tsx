@@ -121,7 +121,7 @@ export function BusinessCycleGraph({ figure }: { figure?: string }) {
             onChange={setCursor}
             suffix=" t"
           />
-          <div className="flex flex-wrap gap-x-6 gap-y-1 border-t border-line pt-3 font-sans text-xs text-muted">
+          <div className="flex flex-wrap gap-x-6 gap-y-1 pt-2 font-sans text-xs text-muted">
             <span>
               Y = {formatNumber(model.current.actual)}; Y* = {formatNumber(POTENTIAL)}
             </span>

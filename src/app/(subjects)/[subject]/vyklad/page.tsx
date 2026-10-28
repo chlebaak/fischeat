@@ -35,7 +35,7 @@ export default async function VykladPage({ params }: PageProps) {
         <p className="font-sans text-sm text-muted">
           Výklad · {subject.topics.length} témat
         </p>
-        <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.04em] sm:text-[3.5rem]">
+        <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.045em] sm:text-[3.5rem]">
           Výklad
         </h1>
         <p className="mt-5 max-w-2xl font-serif text-[1.06rem] leading-[1.7] text-ink/80">

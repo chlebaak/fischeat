@@ -40,7 +40,7 @@ export default async function TestPage({ params }: PageProps) {
         <p className="font-sans text-sm text-muted">
           Test · {subject.meta.shortTitle}
         </p>
-        <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.04em] sm:text-[3.5rem]">
+        <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.045em] sm:text-[3.5rem]">
           {defaultTest?.title ?? "Vzorový test"}
         </h1>
         <p className="mt-4 font-sans text-sm text-muted">
@@ -55,7 +55,7 @@ export default async function TestPage({ params }: PageProps) {
           body, slabá místa i vzorové grafy.
         </p>
 
-        <aside className="mt-8 border-y border-line py-4 font-sans text-sm leading-relaxed text-muted">
+        <aside className="mt-8 rounded-lg bg-surface px-5 py-4 font-sans text-sm leading-relaxed text-muted">
           <p>
             <span className="font-medium text-ink">Jak to funguje: </span>
             výpočty se kontrolují s tolerancí, u grafů rozhoduješ ty. Po
@@ -78,7 +78,7 @@ export default async function TestPage({ params }: PageProps) {
         <SubjectTestRunner subject={subject.meta.slug} />
       ) : (
         <div className="mx-auto max-w-4xl pb-12">
-          <p className="border-t border-line pt-8 font-sans text-sm text-muted">
+          <p className="pt-8 font-sans text-sm text-muted">
             Pro tento předmět zatím není připravený vzorový test.
           </p>
         </div>

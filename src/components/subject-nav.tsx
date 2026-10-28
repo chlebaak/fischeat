@@ -45,8 +45,8 @@ export function SubjectNav({
               aria-current={item.active ? "page" : undefined}
               className={
                 item.active
-                  ? "font-medium text-ink underline decoration-accent decoration-2 underline-offset-[10px]"
-                  : "text-muted transition-colors hover:text-ink"
+                  ? "inline-block py-1.5 font-medium text-ink underline decoration-accent decoration-2 underline-offset-[10px]"
+                  : "inline-block py-1.5 text-muted transition-colors hover:text-ink"
               }
             >
               {item.label}

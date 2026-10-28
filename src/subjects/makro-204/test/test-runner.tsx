@@ -58,12 +58,12 @@ function NumericField({
             onChange={(event) => onChange(event.target.value)}
             disabled={submitted}
             placeholder={field.placeholder}
-            className={`min-w-0 flex-1 border bg-white px-2.5 py-2 font-mono text-sm text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-accent disabled:bg-paper disabled:text-muted ${
+            className={`min-w-0 flex-1 rounded-md border bg-white px-2.5 py-2 font-mono text-sm text-ink transition-colors placeholder:text-muted/60 focus:border-accent disabled:bg-paper disabled:text-muted ${
               submitted
                 ? correct
                   ? "border-graph-2"
                   : "border-danger"
-                : "border-line"
+                : "border-line-strong"
             }`}
           />
           {field.unit ? (
@@ -105,10 +105,10 @@ function SelfPart({
           disabled={submitted}
           aria-pressed={selected === true}
           onClick={() => onSelect(true)}
-          className={`border px-3 py-1.5 font-sans text-xs transition-colors disabled:cursor-default ${
+          className={`rounded-md border px-3 py-1.5 font-sans text-xs transition-colors disabled:cursor-default ${
             selected === true
               ? "border-ink bg-ink text-paper"
-              : "border-line bg-white text-muted hover:border-ink hover:text-ink"
+              : "border-line-strong bg-white text-muted hover:border-ink hover:text-ink"
           }`}
         >
           Umím
@@ -118,10 +118,10 @@ function SelfPart({
           disabled={submitted}
           aria-pressed={selected === false}
           onClick={() => onSelect(false)}
-          className={`border px-3 py-1.5 font-sans text-xs transition-colors disabled:cursor-default ${
+          className={`rounded-md border px-3 py-1.5 font-sans text-xs transition-colors disabled:cursor-default ${
             selected === false
               ? "border-danger bg-danger text-white"
-              : "border-line bg-white text-muted hover:border-danger hover:text-danger"
+              : "border-line-strong bg-white text-muted hover:border-danger hover:text-danger"
           }`}
         >
           Ještě ne
@@ -159,7 +159,7 @@ function Part({
   onSelfChange: (value: boolean) => void;
 }) {
   return (
-    <div id={part.id} className="scroll-mt-24 border-t border-line pt-4">
+    <div id={part.id} className="scroll-mt-24">
       <div className="flex items-baseline justify-between gap-3">
         <p className="font-sans text-sm font-medium">
           <RichText text={part.label} />
@@ -193,7 +193,7 @@ function Part({
       )}
 
       {submitted ? (
-        <details className="mt-3 border-t border-line pt-2">
+        <details className="mt-3">
           <summary>Zobrazit postup</summary>
           <div className="mt-2 space-y-1.5 font-serif text-sm leading-relaxed text-ink/80">
             {part.solution.map((line, index) => (
@@ -204,7 +204,7 @@ function Part({
           </div>
         </details>
       ) : (
-        <p className="mt-3 border-t border-line pt-2 font-sans text-[11px] text-muted">
+        <p className="mt-3 font-sans text-[11px] text-muted">
           Řešení se odemkne po vyhodnocení.
         </p>
       )}
@@ -286,7 +286,7 @@ export function TestRunner() {
           </span>
         </div>
         <div
-          className="mx-auto mt-2 h-px max-w-4xl bg-line"
+          className="mx-auto mt-2 h-0.5 max-w-4xl rounded-full bg-line"
           role="progressbar"
           aria-label="Vyplnění testu"
           aria-valuemin={0}
@@ -294,7 +294,7 @@ export function TestRunner() {
           aria-valuenow={progress.answered}
         >
           <div
-            className="h-px bg-accent transition-[width] duration-300"
+            className="h-0.5 rounded-full bg-accent transition-[width] duration-300"
             style={{
               width: `${Math.min(100, (progress.answered / progress.total) * 100)}%`,
             }}
@@ -310,7 +310,7 @@ export function TestRunner() {
               <section
                 key={question.id}
                 id={question.id}
-                className="scroll-mt-32 border-t border-line pt-8 first:border-t-0 first:pt-0"
+                className="scroll-mt-32"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <div className="flex items-baseline gap-3">
@@ -335,7 +335,7 @@ export function TestRunner() {
                 </div>
 
                 {question.given?.length ? (
-                  <dl className="mt-4 grid gap-x-6 gap-y-1.5 border-y border-line py-3 font-sans text-xs sm:grid-cols-2">
+                  <dl className="mt-4 grid gap-x-6 gap-y-1.5 rounded-lg bg-surface px-4 py-3 font-sans text-xs sm:grid-cols-2">
                     {question.given.map((item) => (
                       <div key={item.label} className="flex justify-between gap-3">
                         <dt className="text-muted">
@@ -429,7 +429,7 @@ export function TestRunner() {
           })}
         </div>
 
-        <div id="vysledek" className="scroll-mt-32 border-t border-line py-10">
+        <div id="vysledek" className="scroll-mt-32 py-10">
           {!submitted ? (
             <div className="flex flex-wrap items-center justify-between gap-4">
               <p className="max-w-md font-sans text-sm leading-relaxed text-muted">
@@ -439,7 +439,7 @@ export function TestRunner() {
               <button
                 type="button"
                 onClick={evaluate}
-                className="bg-ink px-5 py-2.5 font-sans text-sm text-paper transition-colors hover:bg-accent"
+                className="rounded-md bg-ink px-5 py-2.5 font-sans text-sm text-paper transition-colors hover:bg-accent"
               >
                 Vyhodnotit test
               </button>
@@ -456,13 +456,13 @@ export function TestRunner() {
                 <button
                   type="button"
                   onClick={reset}
-                  className="border border-line px-4 py-2 font-sans text-sm text-ink transition-colors hover:border-accent hover:text-accent"
+                  className="rounded-md border border-line-strong px-4 py-2 font-sans text-sm text-ink transition-colors hover:border-accent hover:text-accent"
                 >
                   Zkusit znovu
                 </button>
               </div>
 
-              <div className="mt-6 grid gap-x-8 gap-y-3 border-t border-line pt-4 sm:grid-cols-2">
+              <div className="mt-6 grid gap-x-8 gap-y-3 pt-4 sm:grid-cols-2">
                 {byTopic.map((row) => {
                   const topic = getTopicById(row.topicId);
                   return (
@@ -473,9 +473,9 @@ export function TestRunner() {
                           {row.earned} / {row.total} b.
                         </span>
                       </div>
-                      <div className="mt-1.5 h-px bg-line">
+                      <div className="mt-1.5 h-0.5 rounded-full bg-line">
                         <div
-                          className="h-px bg-accent"
+                          className="h-0.5 rounded-full bg-accent"
                           style={{ width: `${(row.earned / row.total) * 100}%` }}
                         />
                       </div>

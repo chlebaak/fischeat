@@ -20,7 +20,7 @@ export function SiteHeader() {
         <nav className="flex items-center gap-5 font-sans text-[13px] sm:text-sm">
           <Link
             href="/"
-            className="text-muted transition-colors hover:text-ink"
+            className="inline-block py-2 text-muted transition-colors hover:text-ink"
           >
             Předměty
           </Link>

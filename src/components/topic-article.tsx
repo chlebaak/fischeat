@@ -42,14 +42,14 @@ export function TopicArticle({
           Téma {String(topic.number).padStart(2, "0")} /{" "}
           {String(subject.topics.length).padStart(2, "0")}
         </p>
-        <h1 className="mt-3 text-[2.15rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-[3.1rem]">
+        <h1 className="mt-3 text-[2.15rem] font-semibold leading-[1.08] tracking-[-0.045em] sm:text-[3.1rem]">
           {topic.title}
         </h1>
         <p className="mt-5 max-w-2xl font-serif text-[1.08rem] leading-[1.7] text-ink/80">
           <RichText text={topic.intro} />
         </p>
 
-        <div className="mt-8 border-y border-line py-5">
+        <div className="mt-8 rounded-lg bg-surface px-5 py-5">
           <p className="font-sans text-xs font-medium text-muted">Co si odnést</p>
           <ul className="mt-3 space-y-2">
             {topic.takeaways.map((item) => (
@@ -89,7 +89,7 @@ export function TopicArticle({
           ) : null}
         </div>
 
-        <details className="mt-6 border-y border-line py-3">
+        <details className="mt-6 py-3">
           <summary>Obsah kapitoly</summary>
           <ol className="mt-3 grid gap-x-6 gap-y-1 font-sans text-sm sm:grid-cols-2">
             {topic.sections.map((section, index) => (
@@ -112,7 +112,7 @@ export function TopicArticle({
       <article className="container-prose prose-makro pb-10 pt-4">
         {topic.sections.map((section) => (
           <section key={section.id} id={section.id} className="scroll-mt-24">
-            <h2 className="mt-14 border-t border-line pt-6 font-sans text-[1.65rem] font-semibold leading-tight tracking-[-0.025em] sm:text-[1.85rem]">
+            <h2 className="mt-16 font-sans text-[1.65rem] font-semibold leading-tight tracking-[-0.035em] sm:text-[1.85rem]">
               {section.title}
             </h2>
             <ContentBlocks blocks={section.blocks} subject={subject} />
@@ -120,7 +120,7 @@ export function TopicArticle({
         ))}
       </article>
 
-      <aside className="container-prose no-print border-t border-line py-8">
+      <aside className="container-prose no-print py-8">
         <div className="grid gap-8 sm:grid-cols-2">
           <div>
             <p className="font-sans text-xs font-medium text-muted">Vzorce k tématu</p>
@@ -173,7 +173,7 @@ export function TopicArticle({
 
       <nav
         aria-label="Další kapitola"
-        className="no-print container-prose grid gap-4 border-t border-line py-8 sm:grid-cols-2"
+        className="no-print container-prose grid gap-4 py-8 sm:grid-cols-2"
       >
         {previous ? (
           <Link

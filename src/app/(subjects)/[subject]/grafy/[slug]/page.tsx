@@ -95,7 +95,7 @@ export default async function GraphPage({ params }: PageProps) {
           <p className="font-sans text-xs font-medium text-muted">
             {graph.interactive ? "Interaktivní graf" : "Schéma"}
           </p>
-          <h1 className="mt-2 text-[2.3rem] font-semibold leading-[1.05] tracking-[-0.04em] sm:text-[3.2rem]">
+          <h1 className="mt-2 text-[2.3rem] font-semibold leading-[1.05] tracking-[-0.045em] sm:text-[3.2rem]">
             {graph.title}
           </h1>
           <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-sans text-xs text-muted">
@@ -130,7 +130,7 @@ export default async function GraphPage({ params }: PageProps) {
           </GraphDisplayProvider>
         </div>
 
-        <section className="mt-10 border-t border-line pt-8">
+        <section className="mt-10">
           <h2 className="font-sans text-xl font-semibold tracking-[-0.02em]">
             Co si odnést
           </h2>
@@ -155,7 +155,7 @@ export default async function GraphPage({ params }: PageProps) {
           </ul>
         </section>
 
-        <section className="mt-10 border-t border-line pt-8">
+        <section className="mt-10">
           <h2 className="font-sans text-xl font-semibold tracking-[-0.02em]">
             Na co si dát pozor
           </h2>
@@ -174,7 +174,7 @@ export default async function GraphPage({ params }: PageProps) {
           </ul>
         </section>
 
-        <section className="mt-10 grid gap-8 border-t border-line pt-8 sm:grid-cols-2">
+        <section className="mt-10 grid gap-8 sm:grid-cols-2">
           <div>
             <p className="font-sans text-xs font-medium text-muted">
               Související vzorce
@@ -229,7 +229,7 @@ export default async function GraphPage({ params }: PageProps) {
 
         <nav
           aria-label="Další graf"
-          className="no-print mt-10 grid gap-4 border-t border-line pt-8 sm:grid-cols-2"
+          className="no-print mt-10 grid gap-4 sm:grid-cols-2"
         >
           {previous ? (
             <Link href={`${subjectPath}/grafy/${previous.id}`} className="group">

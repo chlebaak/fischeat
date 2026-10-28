@@ -4,8 +4,11 @@
 @theme {
   --color-paper: #fcfcfa;
   --color-ink: #121417;
-  --color-muted: #6e7378;
-  --color-line: #e5e6e2;
+  --color-muted: #666b70;
+  --color-line: #e8e9e4;
+  --color-line-strong: #d7dad2;
+  --color-surface: #f7f8f4;
+  --color-surface-2: #f1f3ee;
   --color-accent: #24527a;
   --color-accent-soft: #edf2f6;
   --color-danger: #a33b2b;
@@ -29,6 +32,7 @@
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    letter-spacing: -0.005em;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -88,6 +92,7 @@
   font-family: var(--font-serif);
   font-size: 1.0625rem;
   line-height: 1.72;
+  letter-spacing: -0.006em;
   color: var(--color-ink);
 }
 
@@ -151,7 +156,7 @@
   text-align: left;
   font-weight: 600;
   padding: 0.65rem 0.75rem;
-  border-bottom: 1px solid var(--color-ink);
+  border-bottom: 1px solid var(--color-line-strong);
   vertical-align: bottom;
 }
 
@@ -173,6 +178,7 @@
 .callout {
   border-left: 2px solid var(--color-accent);
   background: var(--color-accent-soft);
+  border-radius: 0 8px 8px 0;
   padding: 0.95rem 1.1rem;
   font-family: var(--font-sans);
   font-size: 0.925rem;
@@ -190,9 +196,8 @@
 }
 
 .formula-card {
-  border: 1px solid var(--color-line);
-  border-left: 3px solid var(--color-accent);
-  background: #fbfbf8;
+  border-radius: 8px;
+  background: var(--color-surface);
   padding: 1.1rem 1.2rem;
 }
 
@@ -208,6 +213,7 @@
   font-weight: 600;
   font-size: 0.95rem;
   line-height: 1.4;
+  letter-spacing: -0.01em;
 }
 
 .formula-when {
@@ -236,6 +242,7 @@
 
 .graph-card {
   border: 1px solid var(--color-line);
+  border-radius: 10px;
   background: #ffffff;
   padding: 1.15rem;
 }
@@ -326,17 +333,18 @@ details[open] > summary::before {
   grid-template-columns: 2.25rem 1fr auto;
   gap: 0.9rem;
   align-items: baseline;
-  padding: 1.1rem 0;
+  padding: 1.1rem 0.5rem;
+  margin-inline: -0.5rem;
   border-top: 1px solid var(--color-line);
-  transition: color 150ms ease;
-}
-
-.topic-index-link:last-child {
-  border-bottom: 1px solid var(--color-line);
+  border-radius: 6px;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
 }
 
 .topic-index-link:hover {
   color: var(--color-accent);
+  background: var(--color-surface);
 }
 
 .topic-index-link .topic-arrow {

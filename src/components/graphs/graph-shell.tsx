@@ -66,7 +66,7 @@ export function GraphShell({
               type="button"
               aria-pressed={examMode}
               onClick={() => setExamMode((current) => !current)}
-              className="shrink-0 border border-line px-2.5 py-1.5 font-sans text-[11px] text-muted transition-colors hover:border-accent hover:text-accent"
+              className="shrink-0 rounded-md border border-line-strong px-2.5 py-1.5 font-sans text-xs text-muted transition-colors hover:border-accent hover:text-accent"
             >
               {examMode ? "Zpět na interaktivní" : "Zkouškový obrázek"}
             </button>
@@ -104,7 +104,7 @@ export function GraphShell({
       ) : null}
 
       {checklist?.length && !isCompact ? (
-        <details className="mt-4 border-t border-line pt-3">
+        <details className="mt-4">
           <summary>Jak to nakreslit</summary>
           <ul className="mt-2 space-y-1 font-sans text-xs leading-relaxed text-muted">
             {checklist.map((item) => (
@@ -121,7 +121,7 @@ export function GraphShell({
       ) : null}
 
       {table && !isCompact ? (
-        <details className="mt-2 border-t border-line pt-3">
+        <details className="mt-2">
           <summary>Tabulka hodnot</summary>
           <div className="table-wrap mt-2">
             <table className="data-table text-xs">

@@ -76,7 +76,7 @@ function Panel({
 
 export function ConsumptionShiftGraphs() {
   return (
-    <div className="border border-line p-4 sm:p-5">
+    <div className="rounded-lg bg-surface p-4 sm:p-5">
       <div className="mb-3 flex flex-wrap gap-x-4 gap-y-1 font-sans text-[11px] text-muted">
         <span className="inline-flex items-center gap-1.5">
           <svg width="20" height="6" aria-hidden="true">

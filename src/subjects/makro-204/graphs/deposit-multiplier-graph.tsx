@@ -99,7 +99,7 @@ export function DepositMultiplierGraph({ figure }: { figure?: string }) {
             onChange={setRounds}
             format={(value) => String(value)}
           />
-          <div className="flex flex-wrap gap-x-6 gap-y-1 border-t border-line pt-3 font-sans text-xs text-muted">
+          <div className="flex flex-wrap gap-x-6 gap-y-1 pt-2 font-sans text-xs text-muted">
             <span>Multiplikátor = {formatNumber(model.multiplier)}</span>
             <span className="text-ink">
               Limit ΔD = {formatNumber(model.limit)} mil. Kč

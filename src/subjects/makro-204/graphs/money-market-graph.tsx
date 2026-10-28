@@ -126,7 +126,7 @@ export function MoneyMarketGraph({ figure }: { figure?: string }) {
             onChange={setShift}
             format={(value) => (value > 0 ? `+${value}` : String(value))}
           />
-          <div className="flex flex-wrap gap-x-5 gap-y-2 border-t border-line pt-3 font-sans text-xs">
+          <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2 font-sans text-xs">
             <button type="button" onClick={() => setMs(Math.min(600, ms + 50))} className="link-underline text-accent">
               CB nakoupí CP
             </button>

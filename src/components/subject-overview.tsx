@@ -77,7 +77,7 @@ export function SubjectOverview({ subject }: { subject: SubjectBundle }) {
       <section className="grid gap-10 pb-14 pt-16 sm:pb-20 sm:pt-24 lg:grid-cols-[1fr_20rem] lg:gap-20">
         <div className="max-w-3xl">
           <p className="font-sans text-sm text-muted">{meta.eyebrow}</p>
-          <h1 className="mt-4 whitespace-pre-line text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.045em] sm:text-[4.4rem]">
+          <h1 className="mt-4 whitespace-pre-line text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.05em] sm:text-[4.4rem]">
             {meta.heroTitle}
           </h1>
           <p className="mt-6 max-w-xl font-serif text-[1.08rem] leading-[1.7] text-ink/80 sm:text-[1.15rem]">
@@ -87,7 +87,7 @@ export function SubjectOverview({ subject }: { subject: SubjectBundle }) {
             {meta.sections.includes("vyklad") ? (
               <Link
                 href={`${path}/vyklad`}
-                className="inline-flex items-center gap-2 bg-ink px-4 py-2.5 text-paper transition-colors hover:bg-accent"
+                className="inline-flex items-center gap-2 rounded-md bg-ink px-4 py-2.5 text-paper transition-colors hover:bg-accent"
               >
                 Začít výkladem
                 <span aria-hidden="true">→</span>
@@ -106,7 +106,7 @@ export function SubjectOverview({ subject }: { subject: SubjectBundle }) {
         </div>
 
         {steps.length ? (
-          <aside className="hidden border-l border-line pl-8 lg:block">
+          <aside className="hidden pl-8 lg:block">
             <p className="font-sans text-xs font-medium text-muted">
               Doporučený postup
             </p>
@@ -135,8 +135,8 @@ export function SubjectOverview({ subject }: { subject: SubjectBundle }) {
       </section>
 
       {cards.length ? (
-        <section aria-labelledby="sekce" className="border-t border-line py-12 sm:py-16">
-          <h2 id="sekce" className="font-sans text-2xl font-semibold tracking-[-0.03em]">
+        <section aria-labelledby="sekce" className="py-12 sm:py-16">
+          <h2 id="sekce" className="font-sans text-2xl font-semibold tracking-[-0.035em]">
             Co tady najdeš
           </h2>
           <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -144,7 +144,7 @@ export function SubjectOverview({ subject }: { subject: SubjectBundle }) {
               <Link
                 key={section.href}
                 href={section.href}
-                className="group border-t border-line pt-4"
+                className="group"
               >
                 <span className="font-mono text-[11px] text-muted">
                   {String(index + 1).padStart(2, "0")}
@@ -163,8 +163,8 @@ export function SubjectOverview({ subject }: { subject: SubjectBundle }) {
 
       {topics.length ? (
         <section aria-labelledby="temata" className="pb-8">
-          <div className="flex flex-wrap items-baseline justify-between gap-2 border-t border-line pt-12 sm:pt-16">
-            <h2 id="temata" className="font-sans text-2xl font-semibold tracking-[-0.03em]">
+          <div className="flex flex-wrap items-baseline justify-between gap-2 pt-12 sm:pt-16">
+            <h2 id="temata" className="font-sans text-2xl font-semibold tracking-[-0.035em]">
               Témata
             </h2>
             {meta.sections.includes("vyklad") ? (
@@ -183,7 +183,7 @@ export function SubjectOverview({ subject }: { subject: SubjectBundle }) {
       ) : null}
 
       {meta.sourceNote ? (
-        <p className="border-t border-line py-8 font-sans text-xs leading-relaxed text-muted">
+        <p className="py-8 font-sans text-xs leading-relaxed text-muted">
           {meta.sourceNote}
         </p>
       ) : null}

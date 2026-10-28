@@ -17,7 +17,7 @@ export function SegmentedControl<T extends string | number>({
       <div
         role="group"
         aria-label={label}
-        className="flex w-fit border border-line"
+        className="flex w-fit border border-line-strong"
       >
         {options.map((option) => {
           const active = option.value === value;

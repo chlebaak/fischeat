@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="container-page">
       <div className="container-prose py-24">
         <p className="font-sans text-sm text-muted">404</p>
-        <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.04em]">
+        <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.05] tracking-[-0.045em]">
           Tahle stránka tu není.
         </h1>
         <p className="mt-4 font-serif text-[1.05rem] leading-[1.7] text-ink/80">

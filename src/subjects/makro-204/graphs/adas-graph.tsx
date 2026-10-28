@@ -134,7 +134,7 @@ export function AdAsGraph({
             onChange={setSasShock}
             format={(value) => (value > 0 ? `+${value}` : String(value))}
           />
-          <div className="flex flex-wrap gap-x-5 gap-y-2 border-t border-line pt-3 font-sans text-xs">
+          <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2 font-sans text-xs">
             <button
               type="button"
               onClick={() => {
@@ -179,7 +179,7 @@ export function AdAsGraph({
               Reset
             </button>
           </div>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-line pt-3 font-sans text-xs">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 font-sans text-xs">
             <button
               type="button"
               onClick={() => setShowLongRun((current) => !current)}

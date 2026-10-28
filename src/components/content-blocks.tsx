@@ -127,7 +127,7 @@ export function ContentBlocks({
             return (
               <aside
                 key={index}
-                className="my-8 border-y border-line py-5 font-sans"
+                className="my-8 rounded-lg bg-surface px-5 py-5 font-sans"
               >
                 <p className="text-xs font-medium text-muted">Příklad</p>
                 <h3 className="mt-1 text-[17px] font-semibold leading-snug">
@@ -192,9 +192,9 @@ export function ContentBlocks({
 
           case "terms":
             return (
-              <dl key={index} className="my-6 divide-y divide-line border-y border-line">
+              <dl key={index} className="my-6 space-y-3">
                 {block.items.map((item) => (
-                  <div key={item.term} className="py-3">
+                  <div key={item.term}>
                     <dt className="font-sans text-sm font-semibold">{item.term}</dt>
                     <dd className="mt-1 font-sans text-sm leading-relaxed text-muted">
                       <RichText text={item.definition} />
